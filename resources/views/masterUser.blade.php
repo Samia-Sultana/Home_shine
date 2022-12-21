@@ -9,6 +9,7 @@
     <title>Home Shine Interiors Design & Decoration</title>
     <meta name="description" content="description">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png' )}}">
@@ -37,6 +38,9 @@
 
 
 @yield('userWelcome')
+@yield('productDetail')
+@yield('catagoryProducts')
+
 
 
 

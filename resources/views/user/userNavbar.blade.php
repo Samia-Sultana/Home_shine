@@ -42,8 +42,11 @@
                  <div class="row align-items-center">
                      <!--Desktop Logo-->
                      <div class="logo col-md-2 col-lg-2 d-none d-lg-block">
-                         <a href="index.html">
-                             <img src="assets/images/logo/logo.png" alt="Belle Multipurpose Html Template" title="Belle Multipurpose Html Template" />
+                         @php
+                         $logo = App\Models\Logo::get()->last();
+                         @endphp
+                         <a href="{{route('welcome')}}">
+                             <img src="{{url('photos/'.$logo->image)}}" alt="Belle Multipurpose Html Template" title="Belle Multipurpose Html Template" />
                          </a>
                      </div>
                      <!--End Desktop Logo-->

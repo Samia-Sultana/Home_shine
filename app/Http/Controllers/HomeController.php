@@ -18,8 +18,8 @@ class HomeController extends Controller
         $logo = Logo::get()->last();
         $slider = Slider::all();
         $catagories = Catagory::all();
-        $latest = Product::where('latest_product',0)->get();
-        $top = Product::where('top_rated',1)->get();
-        return view('welcome',compact('navigation', 'socialMedia','logo','slider','latest','top','catagories'));
+        $allProduct = Product::all();
+        
+        return view('welcome',compact('navigation', 'socialMedia','logo','slider','allProduct','catagories'));
     }
 }
