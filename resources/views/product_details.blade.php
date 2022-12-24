@@ -65,17 +65,17 @@
                             <h1 class="product-single__title">Short Description</h1>
 
                             <div class="prInfoRow">
-                 <!----               <div class="product-stock"> <span class="instock ">In Stock</span> <span class="outstock hide">Unavailable</span> </div> ---->
+                                <!----               <div class="product-stock"> <span class="instock ">In Stock</span> <span class="outstock hide">Unavailable</span> </div> ---->
                                 <div class="product-sku">SKU: <span class="variant-sku">{{$stockDetail[0]->sku}}</span></div>
-                <!----          <div class="product-review"><a class="reviewLink" href="#tab2"><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star-o"></i><i class="font-13 fa fa-star-o"></i><span class="spr-badge-caption">6 reviews</span></a></div> ---->
+                                <!----          <div class="product-review"><a class="reviewLink" href="#tab2"><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star-o"></i><i class="font-13 fa fa-star-o"></i><span class="spr-badge-caption">6 reviews</span></a></div> ---->
                             </div>
                             <p class="product-single__price product-single__price-product-template">
-                        <!------<span class="visually-hidden">Regular price</span>
+                                <!------<span class="visually-hidden">Regular price</span>
                                 <s id="ComparePrice-product-template"><span class="money">$600.00</span></s> ---------->
                                 <span class="product-price__price product-price__price-product-template product-price__sale product-price__sale--single">
                                     <span id="ProductPrice-product-template"><span class="money">{{'BDT '. $productDetail->price}}</span></span>
                                 </span>
-                  <!-----              <span class="discount-badge"> <span class="devider">|</span>&nbsp;
+                                <!-----              <span class="discount-badge"> <span class="devider">|</span>&nbsp;
                                     <span>You Save</span>
                                     <span id="SaveAmount-product-template" class="product-single__save-amount">
                                         <span class="money">$100.00</span>
@@ -152,7 +152,7 @@
                             <div class="product-form__item--submit">
                                 <form action="">
 
-                                    <input type="hidden" class="pro-id" value="{{$productDetail->id}}"/>
+                                    <input type="hidden" class="pro-id" value="{{$productDetail->id}}" />
                                     <input type="hidden" class="pro-sku" value="{{$stockDetail[0]->sku}}" />
                                     <button type="button" name="add" class="btn product-form__cart-submit btn-submit">
                                         <span>Add to cart</span>
@@ -169,7 +169,14 @@
                             <div class="display-table shareRow">
                                 <div class="display-table-cell medium-up--one-third">
                                     <div class="wishlist-btn">
-                                        <a class="wishlist add-to-wishlist" href="#" title="Add to Wishlist"><i class="icon anm anm-heart-l" aria-hidden="true"></i> <span>Add to Wishlist</span></a>
+                                        <form action="">
+                                            <input type="hidden" class="pro-id" value="{{$productDetail->id}}" />
+                                            <input type="hidden" class="pro-sku" value="{{$stockDetail[0]->sku}}" />
+                                            <button type="button" name="add" class="btn wishlist add-to-wishlist">
+                                            <i class="icon anm anm-heart-l" aria-hidden="true"></i> Add to Wishlist
+                                            </button>
+                                        </form>
+                                     <!--------   <a class="wishlist add-to-wishlist" href="#" title="Add to Wishlist"><i class="icon anm anm-heart-l" aria-hidden="true"></i> <span>Add to Wishlist</span></a> -------->
                                     </div>
                                 </div>
                                 <!-------     <div class="display-table-cell text-right">
@@ -739,7 +746,7 @@
     <!--End Body Content-->
 
 
-
+    <!-----------------size and color
     <div class="hide">
         <div id="sizechart">
             <h3>WOMEN'S BODY SIZING CHART</h3>
@@ -879,7 +886,7 @@
             </div>
         </div>
     </div>
-
+---------------------->
 
     <!-- Including Jquery -->
     <script src="assets/js/vendor/jquery-3.3.1.min.js"></script>
@@ -896,6 +903,10 @@
     <!-- Photoswipe Gallery -->
     <script src="assets/js/vendor/photoswipe.min.js"></script>
     <script src="assets/js/vendor/photoswipe-ui-default.min.js"></script>
+
+    <!--------- Toastr mesage ajax ------------>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> </script>
+
     <script>
         $(function() {
             var $pswp = $('.pswp')[0],
@@ -968,5 +979,75 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(".btn-submit").click(function(e) {
+        e.preventDefault();
+
+        var $button = $(this);
+        var productId = $button.parent().find("input:even").val();
+        var productSku = $button.parent().find("input:odd").val();
+        console.log(productId, productSku);
+        var quantity = 1;
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('addToCart') }}",
+            data: {
+                productId: productId,
+                productSku: productSku,
+                quantity: quantity
+            },
+            success: function(data) {
+                toastr.success(data.success);
+            }
+        });
+
+    });
+</script>
+
+
+
+
+<script type="text/javascript">
+        $(".add-to-wishlist").click(function(e) {
+            e.preventDefault();
+
+            var $button = $(this);
+            var productId = $button.parent().find("input:even").val();
+            var productSku = $button.parent().find("input:odd").val();
+            console.log(productId, productSku);
+            var quantity = 1;
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('addToWishlist') }}",
+                data: {
+                    productId: productId,
+                    productSku: productSku,
+                    quantity: quantity
+                },
+                success: function(data) {
+                    toastr.success(data.success); 
+                }
+            });
+
+        });
+    </script>
+
+
+
 
 @endsection

@@ -14,6 +14,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\OrderdetailController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,9 @@ Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
 Route::get('/product/details/{id}/{sku}',[ProductController::class,'show'])->name('showProduct');
 Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('addToCart');
-Route::get('/view-cart',[CartController::class,'viewCart'])->middleware(['auth'])->name('shoppingCart');
+Route::post('/add-to-wishlist',[WishlistController::class,'addToWishlist'])->name('addToWishlist');
+Route::get('/view-cart',[CartController::class,'viewCart'])->name('shoppingCart');
+Route::get('/view-wishlist',[WishlistController::class,'viewWishlist'])->name('wishlist');
 Route::post('/update-cart',[CartController::class,'updateCart'])->name('updateShoppingCart');
 Route::get('/catagory/{id}',[CatagoryController::class, 'show'])->name('catagoryProducts');
 Route::get('/checkout',[CheckoutController::class, 'checkoutPage'])->middleware(['auth'])->name('checkoutPage');
@@ -41,9 +44,11 @@ Route::post('/checkout', [CheckoutController::class, 'checkout'])->middleware(['
 Route::get('/orders', [UserController::class,'orders'])->middleware(['auth'])->name('orders');
 Route::get('/address', [UserController::class,'address'])->middleware(['auth'])->name('address');
 Route::get('/details', [UserController::class,'details'])->middleware(['auth'])->name('details');
-Route::post('/dashboard', [UserController::class, 'changeDetails'] )->middleware(['auth'])->name('accountDetails');
-Route::post('/remove/cart/product', [CartController::class, 'removeCartProduct'])->name('removeCartProduct');
+Route::post('/dashboard/details', [UserController::class, 'changeDetails'] )->middleware(['auth'])->name('accountDetails');
+Route::post('/dashboard/password', [UserController::class, 'changePassword'] )->middleware(['auth'])->name('changePassword');
+Route::post('/wishlist/remove', [WishlistController::class, 'removeWishlistProduct'])->name('removeWishlistProduct');
 Route::get('/allProducts',[ProductController::class,'showAllProducts'])->name('allProducts');
+Route::post('/remove/cart/product', [CartController::class, 'removeCartProduct'])->name('removeCartProduct');
 Route::get('/dashboard', [UserController::class, 'viewDashboard'] )->middleware(['auth'])->name('dashboard');
 Route::get('/view/order/{id}', [UserController::class,'viewOrder'])->middleware(['auth']);
 Route::post('/address', [UserController::class,'editAddress'])->middleware(['auth'])->name('editAddress');

@@ -38,14 +38,16 @@ class CheckoutController extends Controller
         $name = $request->input('name');
         $email = $request->input('email');
         $phone = $request->input('phone');
+        $company = $request->input('company');
         $address = $request->input('address');
         $city = $request->input('city');
         $zip = $request->input('zip');
-        $shipping = $request->input('shipping');
+        $shipping = $request->input('location');
+        $note = $request->input('note');
         if($shipping == 1){
             $shipping = 80;
         }
-        else{
+        else if( $shipping == 0 ){
             $shipping = 150;
         }
 
@@ -57,11 +59,13 @@ class CheckoutController extends Controller
         $invoice['email'] = $email;
         $invoice['phone'] = $phone;
         $invoice['address'] = $address;
+        $invoice['company'] = $company;
         $invoice['city'] = $city;
         $invoice['zip'] = $zip;
         $invoice['status'] = "pending";
         $invoice['user_id'] = Auth::guard('web')->user()->id;
         $invoice['shipping_charge'] = $shipping;
+        $invoice['note'] = $note;
         $invoice->save();
         
         //stroring order info in order products table

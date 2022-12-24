@@ -17,6 +17,9 @@ class CartController extends Controller
     
     
     public function viewCart(Request $request){
+
+
+        
         $catagories = Catagory::all();
         $logo = Logo::get()->last();
         $navigation = Navbar::all();
@@ -24,7 +27,9 @@ class CartController extends Controller
         $subTotal = 0;
         $shipping = 150;
         $grandTotal = 0;
+        
         if($request->session()->has('cart')){
+            
             $cart = $request->session()->get('cart');
             foreach($cart as $item){
                 $subTotal = $subTotal + ($item->price * $item->qty);
@@ -33,6 +38,7 @@ class CartController extends Controller
             return view('shopping_cart', compact('subTotal','shipping','grandTotal','catagories','logo','navigation'));
         }
         else{
+            
             return view('shopping_cart', compact('subTotal','shipping','grandTotal','catagories','logo','navigation'));
         }
         

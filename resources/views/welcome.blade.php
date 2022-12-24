@@ -100,7 +100,7 @@
             </div>
 
             <div class="view-all-btn-area" style="width: 20%;margin: 20px auto;">
-                <a href="" class="btn" style="width: 100%;">View All</a>
+                <a class="btn" style="width: 100%;" href="{{route('allProducts')}}">View All</a>
             </div>
         </div>
     </div>
@@ -183,6 +183,44 @@
 <script src="{{ asset('assets/js/cart.js' )}}"></script>
 <script src="{{ asset('assets/alertifyjs/alertify.min.js' )}}"></script>
 <!--End Instagram Js-->
+
+<!---Toastr message ajax---------->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> </script>
+
+
+
+
+<script type="text/javascript">
+        $(".btn-submit").click(function(e) {
+            e.preventDefault();
+
+            var $button = $(this);
+            var productId = $button.parent().find("input:even").val();
+            var productSku = $button.parent().find("input:odd").val();
+            console.log(productId, productSku);
+            var quantity = 1;
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('addToCart') }}",
+                data: {
+                    productId: productId,
+                    productSku: productSku,
+                    quantity: quantity
+                },
+                success: function(data) {
+                    toastr.success(data.success); 
+                }
+            });
+
+        });
+    </script>
 
 
 @endsection

@@ -1,94 +1,55 @@
-<!DOCTYPE html>
-<html lang="zxx" class="js">
+@extends('masterUser')
+@section('login')
 
-<head>
-    <base href="./">
-    <meta charset="utf-8">
-    <meta name="author" content="Softnio">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
-    <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="{{ asset('adminFrontend/images/favicon.png')}}">
-    <!-- Page Title  -->
-    <title>DashLite Template</title>
-    <!-- StyleSheets  -->
-    <link rel="stylesheet" href="{{ asset('adminFrontend/assets/css/dashlite.css?ver=3.1.1')}}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('adminFrontend/assets/css/theme.css?ver=3.1.1')}}">
-</head>
+        <!--Body Content-->
+        <div id="page-content">
+            <!--Page Title-->
+            <div class="page section-header text-center">
+                <div class="page-title">
+                    <div class="wrapper">
+                        <h1 class="page-width">Login</h1>
+                    </div>
+                </div>
+            </div>
+            <!--End Page Title-->
 
-
-
-
-
-<body class="nk-body bg-white npc-general pg-auth">
-    <div class="nk-app-root">
-        <!-- main @s -->
-        <div class="nk-main ">
-            <!-- wrap @s -->
-            <div class="nk-wrap nk-wrap-nosidebar">
-                <!-- content @s -->
-                <div class="nk-content ">
-                    <div class="nk-block nk-block-middle nk-auth-body  wide-xs">
-                        <div class="brand-logo pb-4 text-center">
-                            
-                        </div>
-                        <div class="card card-bordered">
-                            <div class="card-inner card-inner-lg">
-                                <div class="nk-block-head">
-                                    <div class="nk-block-head-content">
-                                        <h4 class="nk-block-title">User Sign-In</h4>
-                                        <div class="nk-block-des">
-                                            
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
+                        <div class="mb-4">
+                            <form method="post" action="{{ route('login') }}" id="CustomerLoginForm" accept-charset="UTF-8" class="contact-form">
+                                <div class="row">
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="CustomerEmail">Email</label>
+                                            <input type="email" name="email" placeholder="" id="CustomerEmail" class="" autocorrect="off" autocapitalize="off" autofocus="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="CustomerPassword">Password</label>
+                                            <input type="password" value="" name="password" placeholder="" id="CustomerPassword" class="">
                                         </div>
                                     </div>
                                 </div>
-
-                                <form method="POST" action="{{ route('login') }}">
-                                    @csrf
-
-                                    <div class="form-group">
-                                        <div class="form-label-group">
-                                            <label class="form-label" for="default-01">Email</label>
-                                        </div>
-                                        <div class="form-control-wrap">
-                                            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter your email address" required>
-                                        </div>
+                                <div class="row">
+                                    <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+                                        <input type="submit" class="btn mb-3" value="Sign In">
+                                        <p class="mb-4">
+                                            <a href="#" id="RecoverPassword">Forgot your password?</a> &nbsp; | &nbsp;
+                                            <a href="register.html" id="customer_register_link">Create account</a>
+                                        </p>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="form-label-group">
-                                            <label class="form-label" for="password">Password</label> 
-                                        </div>
-                                        <div class="form-control-wrap">
-                                            <a href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
-                                                <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                                <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
-                                            </a>
-                                            <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Enter your password" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-lg btn-primary btn-block">Sign in</button>
-                                    </div>
-                                </form>
-                                <div class="form-note-s2 text-center pt-4"> New on our platform? <a href="/register">Create an account</a>
                                 </div>
-                                
-                            </div>
+                            </form>
                         </div>
                     </div>
-                    
                 </div>
-                <!-- wrap @e -->
             </div>
-            <!-- content @e -->
+
         </div>
-        <!-- main @e -->
-    </div>
-    <!-- app-root @e -->
-
-    <!-- JavaScript -->
-    <script src="{{ asset('adminFrontend/assets/js/bundle.js?ver=3.1.1')}}"></script>
-    <script src="{{ asset('adminFrontend/assets/js/scripts.js?ver=3.1.1')}}"></script>
+        <!--End Body Content-->
 
 
-</html>
+@endsection
+

@@ -54,27 +54,20 @@ class UserController extends Controller
 
     public function changeDetails(Request $request)
     {
+        
         $input = $request->all();
         $first_name = $input['first-name'];
         $last_name = $input['last-name'];
         $email = $input['email'];
-        $current_pwd = $input['current-pwd'];
-        $new_pwd = $input['new-pwd'];
+        $phone = $input['phone'];
 
-        //validation
-
-        
-       /* $request->validate([
-            'token' => ['required'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);*/
+    
         $id = Auth::guard('web')->user()->id;
         $user = User::find($id);
-        $user['name'] = $first_name . " " . $last_name;
+        $user['name'] = $first_name;
+        $user['lastname'] = $last_name;
         $user['email'] = $email;
-        $user['password'] = Hash::make($new_pwd);
-        $user['remember_token'] = Str::random(60);
+        $user['phone'] = $phone;
         $user->save();
         
         /*$status = Password::reset(
@@ -88,10 +81,8 @@ class UserController extends Controller
                 event(new PasswordReset($user));
             }
         );*/
-        $catagories = Catagory::all();
-        $logo = Logo::get()->last();
-        $navigation = Navbar::all();
-        return view('dashboard',compact('catagories','logo','navigation'));
+        
+        return redirect('dashboard');
         /*return $status == Password::PASSWORD_RESET
                     ? redirect()->route('login')->with('status', __($status))
                     : back()->withInput($request->only('email'))
@@ -99,11 +90,31 @@ class UserController extends Controller
 
         
     }
+    public function changePassword(Request $request){
+        $input = $request->all();
+        $current_pwd = $input['password'];
+        $new_pwd = $input['new-password'];
+
+        
+        $id = Auth::guard('web')->user()->id;
+        $user = User::find($id);
+        $user['password'] = Hash::make($new_pwd);
+        $user['remember_token'] = Str::random(60);
+        $user->save();
+
+        return redirect('dashboard');
+
+
+    }
     public function viewDashboard(){
         $catagories = Catagory::all();
         $logo = Logo::get()->last();
         $navigation = Navbar::all();
-        return view('dashboard',compact('catagories','logo','navigation'));
+        $user_id = Auth::guard('web')->user()->id;
+        $orders = Invoice::where('user_id',$user_id)->get();
+        
+        return view('dashboard',compact('orders','catagories','logo','navigation'));
+
     }
 
     public function viewOrder($id){
@@ -149,4 +160,5 @@ class UserController extends Controller
         return view('userAddress',compact('user','catagories','logo','navigation'));
 
    }
+
 }

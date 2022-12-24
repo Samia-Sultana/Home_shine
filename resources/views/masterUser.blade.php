@@ -15,6 +15,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicon/apple-touch-icon.png' )}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon/favicon-32x32.png' )}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon/favicon-16x16.png' )}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="manifest" href="/{{ asset('assets/images/favicon/site.webmanifest') }}">
 
     <!-- Plugins CSS -->
@@ -26,6 +27,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css' )}}">
     <link rel="stylesheet" href="{{ asset('assets/alertifyjs/css/alertify.min.css' )}}">
     <link rel="stylesheet" href="{{ asset('assets/alertifyjs/css/themes/default.min.css' )}}">
+
+
+    <!---------toaster message -------------->
+    <link media="screen" rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <style>
         body {
@@ -40,6 +46,13 @@
 @yield('userWelcome')
 @yield('productDetail')
 @yield('catagoryProducts')
+@yield('shopping_cart')
+@yield('checkout')
+@yield('userDashboard')
+@yield('allProducts')
+@yield('wishlist')
+@yield('register')
+@yield('login')
 
 
 
@@ -61,7 +74,7 @@
 <script src="{{ asset('assets/js/popper.min.js' )}}"></script>
 <script src="{{ asset('assets/js/lazysizes.js' )}}"></script>
 <script src="{{ asset('assets/js/main.js' )}}"></script>
-<script src="{{ asset('assets/js/cart.js' )}}"></script>
+
 <script src="{{ asset('assets/alertifyjs/alertify.min.js' )}}"></script>
 <!--End Instagram Js-->
 

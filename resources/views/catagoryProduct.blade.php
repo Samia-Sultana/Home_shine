@@ -162,6 +162,41 @@
 <script src="{{ asset('assets/js/cart.js' )}}"></script>
 <script src="{{ asset('assets/alertifyjs/alertify.min.js' )}}"></script>
 <!--End Instagram Js-->
+<!---- toastr message ajax ------>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> </script>
+
+
+<script type="text/javascript">
+        $(".btn-submit").click(function(e) {
+            e.preventDefault();
+
+            var $button = $(this);
+            var productId = $button.parent().find("input:even").val();
+            var productSku = $button.parent().find("input:odd").val();
+            console.log(productId, productSku);
+            var quantity = 1;
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('addToCart') }}",
+                data: {
+                    productId: productId,
+                    productSku: productSku,
+                    quantity: quantity
+                },
+                success: function(data) {
+                    toastr.success(data.success); 
+                }
+            });
+
+        });
+    </script>
 
 
 @endsection
