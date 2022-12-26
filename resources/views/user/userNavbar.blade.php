@@ -30,6 +30,7 @@
                             <li><a href="{{route('dashboard')}}">Account</a></li>
                             <li><a href="{{route('login')}}">Login</a></li>
                             <li><a href="{{route('register')}}">Create Account</a></li>
+                           
                         </ul>
                     </div>
                 </div>
@@ -103,12 +104,12 @@
                     </div>
                     <div class="col-4 col-sm-3 col-md-3 col-lg-2">
                         <div class="site-cart">
-                            <a href="{{route('shoppingCart')}}"  title="Cart" style="font-size: large;">
+                            <a href="{{route('shoppingCart')}}" title="Cart" style="font-size: large;">
                                 <i class="icon anm anm-bag-l"></i>
 
                             </a>
                         </div>
-                    <!----   <div id="header-cart" class="block block-cart" >
+                        <!----   <div id="header-cart" class="block block-cart" >
                             <ul class="mini-products-list"></ul>
                             <div class="total">
                                 <div class="total-in">
@@ -121,11 +122,11 @@
                             </div>
                         </div> ---->
                         <div class="site-header__search">
-                        <button type="button" class="search-trigger"><i class="icon anm anm-search-l"></i></button>
-                    </div>
+                            <button type="button" class="search-trigger"><i class="icon anm anm-search-l"></i></button>
+                        </div>
 
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -167,17 +168,17 @@
 
 
     <!-- Including Jquery -->
-<script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js' )}}"></script>
-<script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js' )}}"></script>
-<script src="{{ asset('assets/js/vendor/jquery.cookie.js' )}}"></script>
-<script src="{{ asset('assets/js/vendor/wow.min.js' )}}"></script>
-<script src="{{ asset('assets/js/vendor/instagram-feed.js' )}}"></script>
-<!-- Including Javascript -->
-<script src="{{ asset('assets/js/bootstrap.min.js' )}}"></script>
-<script src="{{ asset('assets/js/plugins.js' )}}"></script>
-<script src="{{ asset('assets/js/popper.min.js' )}}"></script>
-<script src="{{ asset('assets/js/lazysizes.js' )}}"></script>
-<script src="{{ asset('assets/js/main.js' )}}"></script>
-<script src="{{ asset('assets/js/cart.js' )}}"></script>
-<script src="{{ asset('assets/alertifyjs/alertify.min.js' )}}"></script>
-<!--End Instagram Js-->
+    <script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js' )}}"></script>
+    <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js' )}}"></script>
+    <script src="{{ asset('assets/js/vendor/jquery.cookie.js' )}}"></script>
+    <script src="{{ asset('assets/js/vendor/wow.min.js' )}}"></script>
+    <script src="{{ asset('assets/js/vendor/instagram-feed.js' )}}"></script>
+    <!-- Including Javascript -->
+    <script src="{{ asset('assets/js/bootstrap.min.js' )}}"></script>
+    <script src="{{ asset('assets/js/plugins.js' )}}"></script>
+    <script src="{{ asset('assets/js/popper.min.js' )}}"></script>
+    <script src="{{ asset('assets/js/lazysizes.js' )}}"></script>
+    <script src="{{ asset('assets/js/main.js' )}}"></script>
+    <script src="{{ asset('assets/js/cart.js' )}}"></script>
+    <script src="{{ asset('assets/alertifyjs/alertify.min.js' )}}"></script>
+    <!--End Instagram Js-->

@@ -107,13 +107,11 @@ class UserController extends Controller
 
     }
     public function viewDashboard(){
-        $catagories = Catagory::all();
-        $logo = Logo::get()->last();
-        $navigation = Navbar::all();
+       
         $user_id = Auth::guard('web')->user()->id;
         $orders = Invoice::where('user_id',$user_id)->get();
         
-        return view('dashboard',compact('orders','catagories','logo','navigation'));
+        return view('dashboard',compact('orders'));
 
     }
 

@@ -32,7 +32,7 @@
 @yield('adminSmedia')
 @yield('adminProduct')
 @yield('adminOrder')
-
+@yield('adminNavbar')
 
 
 

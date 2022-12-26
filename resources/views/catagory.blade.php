@@ -126,6 +126,7 @@
 <script src="{{ asset('assets/js/script.js')}}"></script>
 <!--=====header script=====-->
 <script src="{{ asset('assets/js/main.js')}}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/Javascript">
      $(".status").on("change", function() {
         var $select = $(this);
