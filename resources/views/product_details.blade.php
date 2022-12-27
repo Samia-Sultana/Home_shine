@@ -87,14 +87,12 @@
 
                             </div> ----->
                             <div class="product-single__description rte">
-                                <ul>
-                                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-                                    <li>Sed ut perspiciatis unde omnis iste natus error sit</li>
-                                    <li>Neque porro quisquam est qui dolorem ipsum quia dolor</li>
-                                    <li>Lorem Ipsum is not simply random text.</li>
-                                </ul>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                                    it to make a type specimen book.</p>
+                                <?php 
+                                $text = App\Models\Product::find($productDetail->id);
+                                $text2 = html_entity_decode($text['description']); 
+                                echo $text2;
+                                ?>
+                              
                             </div>
                             <!----------  <div id="quantity_message">Hurry! Only <span class="items">4</span> left in stock.</div>
                                     <form method="post" action="http://annimexweb.com/cart/add" id="product_form_10508262282" accept-charset="UTF-8" class="product-form product-form-product-template hidedropdown" enctype="multipart/form-data">

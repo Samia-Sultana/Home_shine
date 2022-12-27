@@ -24,16 +24,19 @@
                                 </div>
                                 <form enctype="multipart/form-data" method="POST" action="{{ route('createProduct') }}" class="d-flex">
                                     @csrf
-                                    <div class="p-2">
+                                    <div class="row">
+                                    <div class="">
                                         <label for="productName">Product Name</label><br>
                                         <input type="text" id="productName" name="productName" value=""><br>
 
                                         <label for="price">Price</label><br>
                                         <input type="text" id="price" name="price" value=""><br><br>
 
+                                        
+
                                     </div>
 
-                                    <div class="p-2">
+                                    <div class="">
                                         <label for="thumbnail">Thumbnail Image</label><br>
                                         <input type="file" id="thumbnail" name="thumbnail" value=""><br><br>
 
@@ -43,6 +46,8 @@
 
                                     </div>
 
+                                    </div>
+                                    <div class="row">
                                     <div class="p-2">
                                         <label for="catagory">Choose a catagory:</label>
                                         <select name="catagory" id="catagory">
@@ -60,8 +65,24 @@
 
                                         </select>
 
-                                        <input type="submit" value="Submit" class="btn btn-primary">
+                                        
                                     </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-5">
+                                            <div class="form-group">
+                                                <div class="form-control-wrap">
+                                                    <textarea class="form-control" type="text" id="description" name="description" value=""> </textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+
+                                        <div class="row">
+                                            <div class="col-lg-3" style="text-align:center;">
+                                            <input type="submit" value="Submit" class="btn btn-primary">
+                                            </div>
+                                        </div>
                                 </form>
 
                             </div>
@@ -203,18 +224,22 @@
     </div>
 </div>
 <!-- content @e -->
-<!----Jquery----->
-<script src="{{ asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-<!--=====popper js=====-->
-<script src="{{ asset('assets/js/popper.min.js')}}"></script>
-<!--=====bootstrap=====-->
-<script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
-<!--=====Owl carousel=====-->
-<script src="{{ asset('assets/js/owl.carousel.min.js')}}"></script>
-<!--=====header script=====-->
-<script src="{{ asset('assets/js/script.js')}}"></script>
-<!--=====header script=====-->
-<script src="{{ asset('assets/js/main.js')}}"></script>
+ <!-- Including Jquery -->
+ <script src="{{asset('assets/js/vendor/jquery-3.3.1.min.js')}}"></script>
+        <script src="{{asset('assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
+        <script src="{{asset('assets/js/vendor/jquery.cookie.js')}}"></script>
+        <script src="{{asset('assets/js/vendor/wow.min.js')}}"></script>
+        <script src="{{asset('assets/js/vendor/instagram-feed.js')}}"></script>
+        <!-- Including Javascript -->
+        <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('assets/js/plugins.js')}}"></script>
+        <script src="{{asset('assets/js/popper.min.js')}}"></script>
+        <script src="{{asset('assets/js/lazysizes.js')}}"></script>
+        <script src="{{asset('assets/js/main.js')}}"></script>
+        <script src="{{asset('assets/js/cart.js')}}"></script>
+        <script src="{{asset('assets/alertifyjs/alertify.min.js')}}"></script>
+        <!--End Instagram Js-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <!--=====modal script=====-->
 
 <script src="{{ asset('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')}}"></script>
@@ -223,6 +248,13 @@
 <script src="{{ asset('bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap-modal.js')}}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap-transition.js')}}"></script>
+
+<!--=====CKeditor=====-->
+<script src="{{asset('adminFrontend/assets/js/ckeditor/ckeditor.js')}}"></script>
+
+<script>
+    CKEDITOR.replace('description');
+</script>
 
 
 

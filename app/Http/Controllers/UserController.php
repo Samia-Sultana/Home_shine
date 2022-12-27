@@ -109,9 +109,32 @@ class UserController extends Controller
     public function viewDashboard(){
        
         $user_id = Auth::guard('web')->user()->id;
-        $orders = Invoice::where('user_id',$user_id)->get();
         
-        return view('dashboard',compact('orders'));
+        $orders = Invoice::where('user_id',$user_id)->get();
+        $multipleOrders = array();
+       
+        foreach($orders as $order){
+            $orderInfo = array();
+            $orderDetail = Orderdetail::where('orderinvoice_id', $order->id)->get();
+            foreach($orderDetail as $product){
+                $productInfo = Product::where('id', $product->product_id)->get();
+                $productDetail = (object) array(
+                    'id'=> $order->id,
+                    'name' => $productInfo[0]->productName,
+                    'price' =>$productInfo[0]->price,
+                    'status' => $order->status
+                );
+                array_push($orderInfo,$productDetail);
+
+            }
+            array_push($multipleOrders, $orderInfo);
+            
+        }
+        
+        
+        
+        
+        return view('dashboard',compact('multipleOrders'));
 
     }
 

@@ -15,6 +15,9 @@ use App\Http\Controllers\OrderdetailController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FaqController;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +55,22 @@ Route::post('/remove/cart/product', [CartController::class, 'removeCartProduct']
 Route::get('/dashboard', [UserController::class, 'viewDashboard'] )->middleware(['auth'])->name('dashboard');
 Route::get('/view/order/{id}', [UserController::class,'viewOrder'])->middleware(['auth']);
 Route::post('/address', [UserController::class,'editAddress'])->middleware(['auth'])->name('editAddress');
+Route::get('/all/blog',[BlogController::class,'show'])->name('allBlog');
+Route::get('/blog/{id}/view',[BlogController::class,'viewBlog'])->name('viewBlog');
+Route::get('/view/invoice/{id}', [InvoiceController::class,'viewInvoice'])->middleware(['auth']);
+Route::get('/invoice/{id}/generate',[InvoiceController::class,'generateInvoice']);
+
+Route::get('/contact',function(){
+    return view('contact');
+})->name('contact');
+Route::get('/about',function(){
+    return view('about');
+})->name('about');
+Route::get('/services',[FaqController::class,'viewServices'])->name('services');
+
+Route::post('/contact', [ContactController::class,'store'])->middleware(['auth'])->name('contactCompany');
+Route::post('/services', [FaqController::class,'store'])->middleware(['auth'])->name('faqCompany');
+
 
 require __DIR__.'/auth.php';
 
@@ -98,6 +117,13 @@ Route::prefix('admin')->group(function(){
     Route::post('/update/nav/status',[NavbarController::class,'updateNavStatus'])->middleware(['auth:admin', 'verified'])->name('updateNavStatus');
     Route::post('/delete/slider',[SliderController::class,'destroy'])->middleware(['auth:admin', 'verified'])->name('deleteSlider');
     Route::post('/update/slider/status',[SliderController::class,'updateSliderStatus'])->middleware(['auth:admin', 'verified'])->name('updateSliderStatus');
+    Route::get('/blog',[BlogController::class,'index'])->middleware(['auth:admin', 'verified'])->name('blog');
+    Route::post('/blog',[BlogController::class,'store'])->middleware(['auth:admin', 'verified'])->name('createBlog');
+    Route::get('/view/contact/message',[ContactController::class,'view'])->middleware(['auth:admin', 'verified'])->name('viewContact');
+    Route::get('/view/faq',[FaqController::class,'index'])->middleware(['auth:admin', 'verified'])->name('viewFaq');
+    Route::post('/faq',[FaqController::class,'store'])->middleware(['auth:admin', 'verified'])->name('faq');
+
+
 
 
 

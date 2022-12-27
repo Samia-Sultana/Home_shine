@@ -96,8 +96,10 @@ class CheckoutController extends Controller
         $orders = Invoice::where('user_id',$user_id)->get();
         //dd($orders);
         
-        return view ( 'userOrders',compact('orders','catagories','logo','navigation'));
-        //return response()->json(['hi'=>json_encode('hiiiiiiiiiiiiiiii')]);
+        $user_id = Auth::guard('web')->user()->id;
+        $orders = Invoice::where('user_id',$user_id)->get();
+        
+        return view('dashboard',compact('orders'));
         
         
     }

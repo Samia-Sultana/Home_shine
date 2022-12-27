@@ -65,6 +65,7 @@ class ProductController extends Controller
             $insertedProduct = new Product;
             $insertedProduct['productName'] = $request->productName;
             $insertedProduct['price'] = $request->price;
+            
             $insertedProduct['catagory'] = $request->get('catagory');
             if($request->get('latestOrTop') == 0){
                 $insertedProduct['latest_product'] = $request->get('latestOrTop');
@@ -74,6 +75,7 @@ class ProductController extends Controller
             }
             
             $insertedProduct['image1'] = $thumbnailImageName;
+            $insertedProduct['description'] = $request->description;
             $insertedProduct->save();
         }
 

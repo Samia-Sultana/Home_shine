@@ -102,19 +102,22 @@
         </div>
     </div>
 </div>
-<!-- content @e -->
-<!----Jquery----->
-<script src="{{ asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-<!--=====popper js=====-->
-<script src="{{ asset('assets/js/popper.min.js')}}"></script>
-<!--=====bootstrap=====-->
-<script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
-<!--=====Owl carousel=====-->
-<script src="{{ asset('assets/js/owl.carousel.min.js')}}"></script>
-<!--=====header script=====-->
-<script src="{{ asset('assets/js/script.js')}}"></script>
-<!--=====header script=====-->
-<script src="{{ asset('assets/js/main.js')}}"></script>
+ <!-- Including Jquery -->
+ <script src="{{asset('assets/js/vendor/jquery-3.3.1.min.js')}}"></script>
+        <script src="{{asset('assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
+        <script src="{{asset('assets/js/vendor/jquery.cookie.js')}}"></script>
+        <script src="{{asset('assets/js/vendor/wow.min.js')}}"></script>
+        <script src="{{asset('assets/js/vendor/instagram-feed.js')}}"></script>
+        <!-- Including Javascript -->
+        <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('assets/js/plugins.js')}}"></script>
+        <script src="{{asset('assets/js/popper.min.js')}}"></script>
+        <script src="{{asset('assets/js/lazysizes.js')}}"></script>
+        <script src="{{asset('assets/js/main.js')}}"></script>
+        <script src="{{asset('assets/js/cart.js')}}"></script>
+        <script src="{{asset('assets/alertifyjs/alertify.min.js')}}"></script>
+        <!--End Instagram Js-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/Javascript">
     $(".status").on("change", function() {
         var $select = $(this);

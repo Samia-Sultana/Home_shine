@@ -33,28 +33,36 @@
 @yield('adminProduct')
 @yield('adminOrder')
 @yield('adminNavbar')
+@yield('blog')
+@yield('blogGrid')
+@yield('catagory')
+@yield('contactView')
+@yield('faqview')
 
 
 
 @include('admin.adminFooter')
 
 
-    <!-- JavaScript -->
-    <script src="{{ asset('adminFrontend/assets/js/bundle.js?ver=3.1.1')}}"></script>
-    <script src="{{ asset('adminFrontend/assets/js/scripts.js?ver=3.1.1')}}"></script>
-    <!----Jquery----->
-    <script src="{{ asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-    <!--=====popper js=====-->
-    <script src="{{ asset('assets/js/popper.min.js')}}"></script>
-    <!--=====bootstrap=====-->
-    <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
-    <!--=====Owl carousel=====-->
-    <script src="{{ asset('assets/js/owl.carousel.min.js')}}"></script>
-    <!--=====header script=====-->
-    <script src="{{ asset('assets/js/script.js')}}"></script>
-    <!--=====header script=====-->
-    <script src="{{ asset('assets/js/main.js')}}"></script>
-    <!--=====modal script=====-->
+
+
+ <!-- Including Jquery -->
+ <script src="{{asset('assets/js/vendor/jquery-3.3.1.min.js')}}"></script>
+        <script src="{{asset('assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
+        <script src="{{asset('assets/js/vendor/jquery.cookie.js')}}"></script>
+        <script src="{{asset('assets/js/vendor/wow.min.js')}}"></script>
+        <script src="{{asset('assets/js/vendor/instagram-feed.js')}}"></script>
+        <!-- Including Javascript -->
+        <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('assets/js/plugins.js')}}"></script>
+        <script src="{{asset('assets/js/popper.min.js')}}"></script>
+        <script src="{{asset('assets/js/lazysizes.js')}}"></script>
+        <script src="{{asset('assets/js/main.js')}}"></script>
+        <script src="{{asset('assets/js/cart.js')}}"></script>
+        <script src="{{asset('assets/alertifyjs/alertify.min.js')}}"></script>
+        <!--End Instagram Js-->
+
+   
     
     <script src="{{ asset('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')}}"></script>
     <script src="{{ asset('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js')}}"> </script>
@@ -62,6 +70,7 @@
     <script src="{{ asset('bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap-modal.js')}}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap-transition.js')}}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 
 </html>

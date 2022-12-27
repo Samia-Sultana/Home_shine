@@ -82,41 +82,42 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if($orders)
+                    @if($multipleOrders)
                     <?php $index = 0; ?>
-                    @foreach($orders as $order)
-                    <?php $index++; ?>
+                    @foreach($multipleOrders as $singleOrder)
+
                     <tr>
 
+
                         <td class="product-name">
-                            <h4 class="no-margin"><a href="#">Woven Solid Midi Shirt Dress</a></h4>
+                            @foreach($singleOrder as $product)
+                            <h4 class="no-margin"><a href="#">{{$product->name}}</a></h4></br>
+                            @endforeach
                         </td>
-                        <td class="product-price text-center"><span class="amount">$150.00</span></td>
+                        <td class="product-price text-center">
+                            @foreach($singleOrder as $product)
+                            <span class="amount">{{$product->price}}</span></br>
+                            @endforeach
+
+                        </td>
                         <td class="stock text-center">
-                            <span class="in-stock"></span>
+                            <span class="in-stock">{{$singleOrder[0]->status}}</span>
                         </td>
                         <td class="product-subtotal text-center">
-                            <button type="button" class="btn btn-small">Invoice</button>
-                            <button type="button" class="btn btn-small" data-toggle="modal" data-target="#exampleModal">View Details</button>
+                            <button type="button" class="btn btn-small">
+                                <a class=" mx-1px text-95" href="{{url('/view/invoice/'.$singleOrder[0]->id)}}" target="_blank" data-title="Print">
+                                    
+                                    Invoice
+                                </a>
+                            </button>
+                            <button type="button" class="btn btn-small">
+                                <a class="mx-1px text-95" href="{{url('/invoice/'.$singleOrder[0]->id.'/generate')}}" data-title="PDF">
+                                    
+                                    Download
+                                </a>
+                            </button>
                         </td>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Order Details</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Order Details will Show Here
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </tr>
                     @endforeach
                     @endif

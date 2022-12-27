@@ -22,11 +22,7 @@
                     <div class="nk-sidebar-content">
                         <div class="nk-sidebar-menu" data-simplebar>
                             <ul class="nk-menu">
-                                <li class="nk-menu-heading">
-
-                                    <h6 class="overline-title text-primary-alt">Use-Case Preview</h6>
-
-                                </li><!-- .nk-menu-item -->
+                              
                                 <li class="nk-menu-item">
                                     <a href="{{ route('logo') }}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
@@ -54,15 +50,13 @@
                                 </li><!-- .nk-menu-item -->
                                 
 
-                                <li class="nk-menu-heading">
-                                    <h6 class="overline-title text-primary-alt">Dashboards</h6>
-                                </li><!-- .nk-menu-item -->
+                             
                                 
-                                <li class="nk-menu-item has-sub">
+                                <!----<li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
                                         <span class="nk-menu-text">Products</span>
-                                    </a>
+                                    </a>---->
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
                                             <a href="{{ route('catagory') }}" class="nk-menu-link"><span class="nk-menu-text">Add Category</span></a>
@@ -74,13 +68,37 @@
                                             <a href="{{ route('stock') }}" class="nk-menu-link"><span class="nk-menu-text">Update Stock</span></a>
                                         </li>
                                     </ul><!-- .nk-menu-sub -->
-                                </li><!-- .nk-menu-item -->
+                 <!---               </li> -->
 
                                 <li class="nk-menu-item">
                                     <a href="{{ route('order') }}" class="nk-menu-link ">
                                         <span class="nk-menu-text">Orders</span>
                                     </a>
-            </li>
+                                </li>    
+                                
+                               <!--- <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
+                                        <span class="nk-menu-text">Blog</span>
+                                    </a> ---->
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="#" class="nk-menu-link"><span class="nk-menu-text">Add Blog Category</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="{{ route('blog') }}" class="nk-menu-link"><span class="nk-menu-text">Blog</span></a>
+                                        </li>
+                                      
+                                    </ul><!-- .nk-menu-sub -->
+                              <!---  </li> -->
+                              <li class="nk-menu-item">
+                              <a href="{{ route('viewContact') }}" class="nk-menu-link"><span class="nk-menu-text">Contact us message</span></a>
+                              </li>
+                              <li class="nk-menu-item">
+                              <a href="{{ route('viewFaq') }}" class="nk-menu-link"><span class="nk-menu-text">Question and Answer</span></a>
+                              </li>
+                              
+
 
                             </ul><!-- .nk-menu -->
                         </div><!-- .nk-sidebar-menu -->

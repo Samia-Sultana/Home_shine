@@ -53,6 +53,11 @@
 @yield('wishlist')
 @yield('register')
 @yield('login')
+@yield('blogGrid')
+@yield('blogArticle')
+@yield('contact')
+@yield('services')
+@yield('about')
 
 
 
@@ -76,6 +81,7 @@
 <script src="{{ asset('assets/js/main.js' )}}"></script>
 
 <script src="{{ asset('assets/alertifyjs/alertify.min.js' )}}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <!--End Instagram Js-->
 
 </html>
