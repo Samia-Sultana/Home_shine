@@ -99,7 +99,7 @@ class CheckoutController extends Controller
         $user_id = Auth::guard('web')->user()->id;
         $orders = Invoice::where('user_id',$user_id)->get();
         
-        return view('dashboard',compact('orders'));
+        return redirect()->route('dashboard');
         
         
     }

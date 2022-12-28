@@ -15,7 +15,7 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
                        
                         <div id="accordionExample">
-                            <h2 class="title h2">PYMENT AND RETURNS</h2>
+                           
                             @if($faqs)
                         @foreach($faqs as $faq)
                             <div class="faq-body">

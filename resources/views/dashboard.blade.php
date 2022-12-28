@@ -82,13 +82,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if($multipleOrders)
-                    <?php $index = 0; ?>
+                    @if(count($multipleOrders))
+                    <?php $index = 0; 
+                    ?>
                     @foreach($multipleOrders as $singleOrder)
-
+                    @if(count($singleOrder)>0)
                     <tr>
-
-
                         <td class="product-name">
                             @foreach($singleOrder as $product)
                             <h4 class="no-margin"><a href="#">{{$product->name}}</a></h4></br>
@@ -101,7 +100,11 @@
 
                         </td>
                         <td class="stock text-center">
-                            <span class="in-stock">{{$singleOrder[0]->status}}</span>
+                            <span class="in-stock">
+                                
+                                {{$singleOrder[0]->status}}
+                                
+                            </span>
                         </td>
                         <td class="product-subtotal text-center">
                             <button type="button" class="btn btn-small">
@@ -119,6 +122,7 @@
                         </td>
                        
                     </tr>
+                    @endif
                     @endforeach
                     @endif
                 </tbody>

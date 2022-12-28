@@ -9,9 +9,9 @@ use Image;
 class BlogController extends Controller
 {
     public function index(){
-        $catagories = array();
-        $blogs=array();
-        return view('blog', compact('catagories','blogs'));
+      
+        $blogs= Blog::all();
+        return view('blog', compact('blogs'));
 
     }
     public function store(Request $request){
@@ -44,5 +44,32 @@ class BlogController extends Controller
     public function viewBlog($id){
         $blog = Blog::find($id);
         return view('blogArticle', compact('blog'));
+    }
+
+    public function destroy(Request $request){
+        $blog = Blog::find($request->input('blog_id'));
+        $blog->delete();
+        return redirect()->route('blog');
+
+    }
+    public function updateBlog(Request $request){
+        $id = $request->input('id');
+        $title = $request->input('title');
+        $description = $request->input('description');
+
+        $blog = Blog::find($id);
+        $blog['title'] = $title;
+        $blog['description'] = $description;
+        
+        if ($request->file('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            $thumbnailImageName = date('YmdHi') . $thumbnail->getClientOriginalName();
+            Image::make($thumbnail)->save('photos/'.$thumbnailImageName);
+            $save_url = 'photos/'.$thumbnailImageName;
+            $blog['image'] = $thumbnailImageName;
+
+        }
+        $blog->save();
+
     }
 }

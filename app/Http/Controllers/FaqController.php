@@ -84,9 +84,11 @@ class FaqController extends Controller
      * @param  \App\Models\Faq  $faq
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Faq $faq)
+    public function destroy(Request $request,Faq $faq)
     {
-        //
+        $faq = Faq::find($request->input('faq_id'));
+        $faq->delete();
+        return redirect()->route('viewFaq');
     }
     public function viewServices(){
         $faqs = Faq::all();

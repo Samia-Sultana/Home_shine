@@ -57,7 +57,7 @@
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
                                         <span class="nk-menu-text">Products</span>
                                     </a>---->
-                                    <ul class="nk-menu-sub">
+                                   
                                         <li class="nk-menu-item">
                                             <a href="{{ route('catagory') }}" class="nk-menu-link"><span class="nk-menu-text">Add Category</span></a>
                                         </li>
@@ -67,7 +67,7 @@
                                         <li class="nk-menu-item">
                                             <a href="{{ route('stock') }}" class="nk-menu-link"><span class="nk-menu-text">Update Stock</span></a>
                                         </li>
-                                    </ul><!-- .nk-menu-sub -->
+                                  
                  <!---               </li> -->
 
                                 <li class="nk-menu-item">
@@ -81,15 +81,12 @@
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
                                         <span class="nk-menu-text">Blog</span>
                                     </a> ---->
-                                    <ul class="nk-menu-sub">
-                                        <li class="nk-menu-item">
-                                            <a href="#" class="nk-menu-link"><span class="nk-menu-text">Add Blog Category</span></a>
-                                        </li>
+                                  
                                         <li class="nk-menu-item">
                                             <a href="{{ route('blog') }}" class="nk-menu-link"><span class="nk-menu-text">Blog</span></a>
                                         </li>
                                       
-                                    </ul><!-- .nk-menu-sub -->
+                                 <!-- .nk-menu-sub -->
                               <!---  </li> -->
                               <li class="nk-menu-item">
                               <a href="{{ route('viewContact') }}" class="nk-menu-link"><span class="nk-menu-text">Contact us message</span></a>

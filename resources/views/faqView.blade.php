@@ -85,9 +85,9 @@
                                                 <td>{{$faq->question}}</td>
                                                 <td>{{$faq->answer}}</td>
                                                 <td>
-                                                    <form action="{{route('deleteCatagory')}}" method="post">
+                                                    <form action="{{route('deleteFaq')}}" method="post">
                                                         @csrf
-                                                        <input type="hidden" value="{{$faq->id}}" name="blog_id" id="blog_id">
+                                                        <input type="hidden" value="{{$faq->id}}" name="faq_id" id="faq_id">
                                                         <button type="submit" class="btn btn-danger btn-delete-catagory">Delete</button>
                                                     </form>
                                                 </td>

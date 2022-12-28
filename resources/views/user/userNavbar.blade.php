@@ -103,11 +103,15 @@
                         </div>
                     </div>
                     <div class="col-4 col-sm-3 col-md-3 col-lg-2">
+                        
                         <div class="site-cart">
                             <a href="{{route('shoppingCart')}}" title="Cart" style="font-size: large;">
                                 <i class="icon anm anm-bag-l"></i>
 
                             </a>
+                        </div>
+                        <div>
+                            <a href="{{url('/view-wishlist')}}" class="site-cart" style="font-size: large; margin-right:15px;" > <i class="icon anm anm-heart-l" aria-hidden="true"></i></a>
                         </div>
                         <!----   <div id="header-cart" class="block block-cart" >
                             <ul class="mini-products-list"></ul>
@@ -124,6 +128,7 @@
                         <div class="site-header__search">
                             <button type="button" class="search-trigger"><i class="icon anm anm-search-l"></i></button>
                         </div>
+                       
 
                     </div>
 

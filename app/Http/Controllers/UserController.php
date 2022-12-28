@@ -130,10 +130,7 @@ class UserController extends Controller
             array_push($multipleOrders, $orderInfo);
             
         }
-        
-        
-        
-        
+     
         return view('dashboard',compact('multipleOrders'));
 
     }

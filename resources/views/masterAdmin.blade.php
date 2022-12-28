@@ -32,7 +32,6 @@
 @yield('adminSmedia')
 @yield('adminProduct')
 @yield('adminOrder')
-@yield('adminNavbar')
 @yield('blog')
 @yield('blogGrid')
 @yield('catagory')
