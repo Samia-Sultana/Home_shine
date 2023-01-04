@@ -31,9 +31,12 @@ class BlogController extends Controller
         $blog['image'] = $thumbnailImageName;
         $blog->save();
         
-        $catagories = array();
-        $blogs= Blog::all();
-        return view('blog', compact('catagories','blogs'));
+        $notification = array(
+            'message' => 'New Blog added!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('blog')->with($notification);
 
     }
     public function show(Request $request){
@@ -49,7 +52,12 @@ class BlogController extends Controller
     public function destroy(Request $request){
         $blog = Blog::find($request->input('blog_id'));
         $blog->delete();
-        return redirect()->route('blog');
+        $notification = array(
+            'message' => 'Blog deleted successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('blog')->with($notification);
 
     }
     public function updateBlog(Request $request){
@@ -70,6 +78,7 @@ class BlogController extends Controller
 
         }
         $blog->save();
+        return response()->json(['success'=>'Blog updated successfully']);
 
     }
 }

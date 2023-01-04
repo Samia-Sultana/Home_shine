@@ -76,7 +76,7 @@
                                     <option value="processing">processing</option>
                                     <option value="complete">complete</option>
                                     </select>
-                                    <button type="button" class="button-status">Submit</button>
+                                    <button type="button" class="btn btn-success button-status">Submit</button>
                                     </form>
                                     </td>
                                     
@@ -138,7 +138,7 @@ $.ajax({
             data:{order_id:order_id, status:status},
             success:function(data){
                 
-                console.log(data);
+                toastr.success(data.success);
             }
         });
 

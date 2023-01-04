@@ -89,18 +89,12 @@ class CheckoutController extends Controller
         
 
 
-        $catagories = Catagory::all();
-        $logo = Logo::get()->last();
-        $navigation = Navbar::all();
-        $user_id = Auth::guard('web')->user()->id;
-        $orders = Invoice::where('user_id',$user_id)->get();
-        //dd($orders);
-        
-        $user_id = Auth::guard('web')->user()->id;
-        $orders = Invoice::where('user_id',$user_id)->get();
-        
-        return redirect()->route('dashboard');
-        
+        $notification = array(
+            'message' => 'Order successfull!!please watch order detail at your dashboard',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('welcome')->with($notification);
         
     }
 }

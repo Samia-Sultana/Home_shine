@@ -87,7 +87,7 @@
                         <!-- End product name -->
                         <!-- product price -->
                         <div class="product-price">
-                            <span class="price">{{"BDT ". $item->price}}</span>
+                            <span class="price">{{"BDT ". $stock->unitPrice}}</span>
                         </div>
                         <!-- End product price -->
                     </div>

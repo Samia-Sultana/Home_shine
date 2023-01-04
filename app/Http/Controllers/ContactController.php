@@ -98,9 +98,16 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function destroy(Request $request,Contact $contact)
     {
-        //
+        $input = $request->message_id;
+        Contact::find($input)->delete();
+        $notification = array(
+            'message' => 'Message Deleted!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('viewContact')->with($notification);
     }
     public function view()
     {

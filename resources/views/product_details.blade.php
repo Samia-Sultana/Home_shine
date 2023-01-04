@@ -73,7 +73,7 @@
                                 <!------<span class="visually-hidden">Regular price</span>
                                 <s id="ComparePrice-product-template"><span class="money">$600.00</span></s> ---------->
                                 <span class="product-price__price product-price__price-product-template product-price__sale product-price__sale--single">
-                                    <span id="ProductPrice-product-template"><span class="money">{{'BDT '. $productDetail->price}}</span></span>
+                                    <span id="ProductPrice-product-template"><span class="money">{{'BDT '. $stockDetail[0]->unitPrice}}</span></span>
                                 </span>
                                 <!-----              <span class="discount-badge"> <span class="devider">|</span>&nbsp;
                                     <span>You Save</span>

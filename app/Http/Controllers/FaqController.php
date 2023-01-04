@@ -40,8 +40,14 @@ class FaqController extends Controller
         $faq['question'] = $request->input('question');
         $faq['answer'] = $request->input('answer');
         $faq->save();
+        $notification = array(
+            'message' => 'Question and anser added!',
+            'alert-type' => 'success'
+        );
 
-        return redirect()->route('viewFaq');
+        return redirect()->route('viewFaq')->with($notification);
+
+        
     }
 
     /**
@@ -88,7 +94,13 @@ class FaqController extends Controller
     {
         $faq = Faq::find($request->input('faq_id'));
         $faq->delete();
-        return redirect()->route('viewFaq');
+        $notification = array(
+            'message' => 'Question and anser deleted!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('viewFaq')->with($notification);
+        
     }
     public function viewServices(){
         $faqs = Faq::all();

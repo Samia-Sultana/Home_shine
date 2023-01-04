@@ -122,6 +122,8 @@ Route::prefix('admin')->group(function(){
     Route::post('/blog/delete',[BlogController::class,'destroy'])->middleware(['auth:admin', 'verified'])->name('deleteBlog');
     Route::post('/blog/update',[BlogController::class,'updateBlog'])->middleware(['auth:admin', 'verified'])->name('updateBlog');
     Route::get('/view/contact/message',[ContactController::class,'view'])->middleware(['auth:admin', 'verified'])->name('viewContact');
+    Route::post('/delete/message',[ContactController::class,'destroy'])->middleware(['auth:admin', 'verified'])->name('deleteMessage');
+
     Route::get('/view/faq',[FaqController::class,'index'])->middleware(['auth:admin', 'verified'])->name('viewFaq');
     Route::post('/faq',[FaqController::class,'store'])->middleware(['auth:admin', 'verified'])->name('faq');
     Route::post('/faq/delete',[FaqController::class,'destroy'])->middleware(['auth:admin', 'verified'])->name('deleteFaq');

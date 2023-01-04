@@ -57,8 +57,8 @@
                                         <input name="company" value="" id="company" type="text">
                                     </div>
                                     <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
-                                        <label for="address">Address <span class="required-f">*</span></label>
-                                        <input name="address" value="" id="address" type="text" >
+                                        <label for="address">Address </label>
+                                        <input name="address" value="" id="address" type="text" required >
                                     </div>
                                 </div>
 

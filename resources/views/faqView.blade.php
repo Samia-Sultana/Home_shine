@@ -74,7 +74,7 @@
                                                 <th class="pro-name">Question</th>
                                                 <th class="pro-name">Answer</th>
                                                 <th class="pro-remove">Delete</th>
-                                                <th class="pro-status">Update</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -91,9 +91,7 @@
                                                         <button type="submit" class="btn btn-danger btn-delete-catagory">Delete</button>
                                                     </form>
                                                 </td>
-                                                <td>
-                                                    update
-                                                </td>
+                                                
                                             </tr>
 
                                             @endforeach

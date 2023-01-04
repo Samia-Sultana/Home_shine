@@ -47,7 +47,7 @@
                                                 <td>{{$message->subject}}</td>
                                                 <td>{{$message->message}}</td>
                                                 <td>
-                                                    <form action="{{route('deleteCatagory')}}" method="post">
+                                                    <form action="{{route('deleteMessage')}}" method="post">
                                                         @csrf
                                                         <input type="hidden" value="{{$message->id}}" name="message_id" id="message_id">
                                                         <button type="submit" class="btn btn-danger btn-delete-catagory">Delete</button>

@@ -29,9 +29,6 @@
                                         <label for="productName">Product Name</label><br>
                                         <input type="text" id="productName" name="productName" value=""><br>
 
-                                        <label for="price">Price</label><br>
-                                        <input type="text" id="price" name="price" value=""><br><br>
-
                                         
 
                                     </div>
@@ -58,12 +55,7 @@
                                             @endforeach
                                         </select>
                                         </br></br>
-                                        <label for="latestOrTop"> Latest or Top rated</label>
-                                        <select name="latestOrTop" id="latestOrTop">
-                                            <option value="0">Latest</option>
-                                            <option value="1">Top Rated</option>
-
-                                        </select>
+                                        
 
                                         
                                     </div>
@@ -163,26 +155,11 @@
 
 
 
-                                                                            <label for="update_catagory">Choose a catagory:</label>
-                                                                            <select name="update_catagory" id="update_catagory">
-                                                                                @foreach($catagories as $catagory )
-                                                                                @if($catagory->status == "enable")
-                                                                                <option value="{{$catagory->catagoryName}}">{{$catagory->catagoryName}}</option>
-                                                                                @endif
-                                                                                @endforeach
-                                                                            </select>
-                                                                            </br></br>
-                                                                            <label for="update_latestOrTop"> Latest or Top rated</label>
-                                                                            <select name="update_latestOrTop" id="update_latestOrTop">
-                                                                                <option value="0">Latest</option>
-                                                                                <option value="1">Top Rated</option>
-
-                                                                            </select>
-
+                                                                            
 
                                                                             <br><br>
                                                                             <label for="update_quantity"> Quantity</label><br>
-                                                                            <input type="text" id="update_quantity" name="update_quantity" value="{{$product->availableStock}}"><br><br>
+                                                                            <input type="text" id="update_quantity" name="update_quantity" value="{{$product->totalStock}}"><br><br>
 
                                                                         </div>
 
@@ -239,18 +216,39 @@
         <script src="{{asset('assets/js/cart.js')}}"></script>
         <script src="{{asset('assets/alertifyjs/alertify.min.js')}}"></script>
         <!--End Instagram Js-->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<!--=====modal script=====-->
-
+        
 <script src="{{ asset('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')}}"></script>
 <script src="{{ asset('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js')}}"> </script>
 <script src="{{ asset('http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false')}}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap-modal.js')}}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap-transition.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> </script>
+<script>
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type','info') }}"
+    switch(type){
+        case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+        break;
+        case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+        break;
+        case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+        break;
+        case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+        break;
+    }
+    @endif
+</script>
+
+
 
 <!--=====CKeditor=====-->
 <script src="{{asset('adminFrontend/assets/js/ckeditor/ckeditor.js')}}"></script>
+
 
 <script>
     CKEDITOR.replace('description');
@@ -267,8 +265,7 @@
     var sku =$button.parent().prev().find("input#update_sku").val();
     var price = $button.parent().prev().find("input#update_price").val();
     var quantity =$button.parent().prev().find("input#update_quantity").val() ;
-    var latestOrTop =$button.parent().prev().find("input#update_latestOrTop").val();
-    var catagory =$button.parent().prev().find("select#update_catagory").val();
+ 
     var thumbnail = $button.parent().prev().find("input#update_thumbnail")[0].files;
     var multiImage = $button.parent().prev().find("input#update_image")[0].files;
     var totalImage = $button.parent().prev().find("input#update_image")[0].files.length;
@@ -278,14 +275,7 @@
     fd.append('price',price);
     fd.append('quantity',quantity);
     fd.append('sku',sku);
-    if(latestOrTop == 0){
-        fd.append('latest',latestOrTop);
-    }
-    else{
-        fd.append('top',latestOrTop);
-    }
     
-    fd.append('catagory',catagory);
     fd.append('thumbnail',thumbnail[0]);
     fd.append('totalImage', totalImage);
 
@@ -310,7 +300,7 @@ $.ajaxSetup({
             processData: false,
             dataType: 'json',
             success:function(data){
-                console.log('hiiiiiiiiiiiiiiiiii');
+                toastr.success(data.success);
           }
        });
   
@@ -333,7 +323,7 @@ $.ajaxSetup({
             url:"{{ route('updateStatus') }}",
             data: {id:id,sku:sku,status:status},
             success:function(data){
-                console.log('hiiiiiiiiiiiiiiiiii');
+                toastr.success(data.success);
           }
        });
         

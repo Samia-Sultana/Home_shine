@@ -51,8 +51,12 @@ class StockController extends Controller
 
         $productStock->save();
 
-        $products =  Product::all() ;
-        return view('stock', compact('products'));
+        $notification = array(
+            'message' => 'Stock added!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('stock')->with($notification);
         
 
     }

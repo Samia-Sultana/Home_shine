@@ -13,10 +13,14 @@
     <!-- Page Title  -->
     <title>DashLite Template</title>
     <!-- StyleSheets  -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" media="screen">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="{{ asset('adminFrontend/assets/css/dashlite.css?ver=3.1.1')}}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('adminFrontend/assets/css/theme.css?ver=3.1.1')}}">
+    <!---------toaster message -------------->
+    <link media="screen" rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> </script>
 </head>
 
 
@@ -44,22 +48,23 @@
 
 
 
-
- <!-- Including Jquery -->
- <script src="{{asset('assets/js/vendor/jquery-3.3.1.min.js')}}"></script>
-        <script src="{{asset('assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
-        <script src="{{asset('assets/js/vendor/jquery.cookie.js')}}"></script>
-        <script src="{{asset('assets/js/vendor/wow.min.js')}}"></script>
-        <script src="{{asset('assets/js/vendor/instagram-feed.js')}}"></script>
-        <!-- Including Javascript -->
-        <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('assets/js/plugins.js')}}"></script>
-        <script src="{{asset('assets/js/popper.min.js')}}"></script>
-        <script src="{{asset('assets/js/lazysizes.js')}}"></script>
-        <script src="{{asset('assets/js/main.js')}}"></script>
-        <script src="{{asset('assets/js/cart.js')}}"></script>
-        <script src="{{asset('assets/alertifyjs/alertify.min.js')}}"></script>
-        <!--End Instagram Js-->
+ <!-- JavaScript -->
+ <script src="{{ asset('adminFrontend/assets/js/bundle.js?ver=3.1.1')}}"></script>
+    <script src="{{ asset('adminFrontend/assets/js/scripts.js?ver=3.1.1')}}"></script>
+    <!----Jquery----->
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+    <!--=====popper js=====-->
+    <script src="{{ asset('assets/js/popper.min.js')}}"></script>
+    <!--=====bootstrap=====-->
+    <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
+    <!--=====Owl carousel=====-->
+    <script src="{{ asset('assets/js/owl.carousel.min.js')}}"></script>
+    <!--=====header script=====-->
+    <script src="{{ asset('assets/js/script.js')}}"></script>
+    <!--=====header script=====-->
+    <script src="{{ asset('assets/js/main.js')}}"></script>
+    <!--=====modal script=====-->
+ 
 
    
     
@@ -70,6 +75,26 @@
     <script src="{{ asset('bootstrap/js/bootstrap-modal.js')}}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap-transition.js')}}"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> </script>
+    <script>
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type','info') }}"
+    switch(type){
+        case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+        break;
+        case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+        break;
+        case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+        break;
+        case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+        break;
+    }
+    @endif
+</script>
 
 
 </html>

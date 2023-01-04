@@ -135,7 +135,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
-                                                                        <textarea class="form-control" type="text" id="{{'update_description_'.$blog->id}}" name="update_description" > <?php echo $blog->description ?> </textarea>
+                                                                        <textarea class="form-control" type="text" id="update_description" name="update_description"  > <?php echo $blog->description ?> </textarea>
                                                                         </div>
 
 
@@ -145,7 +145,7 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                    <button type="button" class="btn btn-primary btn-update-product">Save changes</button>
+                                                                    <button type="button" class="btn btn-primary btn-update-product" >Save changes</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -233,23 +233,31 @@
 
     });
 </script>
+<!---<script>
+        CKEDITOR.replace( 'update_description_3', { } );
+        function test()
+        {
+            var x = CKEDITOR.instances.content.GetData();
+            console.log( x );
+        }
+    </script>---->
+
 
 <script type="text/Javascript">
 
     $(".btn-update-product").on("click", function() {
-    
+         
     var $button = $(this);
     var id = $button.parent().prev().find("input#update_blogId").val();
     var title =$button.parent().prev().find("input#update_title").val();
-    var description_id = $button.parent().prev().find("textarea").attr('id');
-    var description = CKEDITOR.instances.description_id.getData();
+    var editordata = $button.parent().prev().find("textarea#update_description").val();
     var thumbnail = $button.parent().prev().find("input#update_thumbnail")[0].files;
-    console.log(id,title,description);
+    console.log(id,title,editordata);
 
     var fd = new FormData();
     fd.append('id',id);
     fd.append('title',title);
-    fd.append('description',description);
+    fd.append('description',editordata);
     fd.append('thumbnail',thumbnail[0]);
     
    
@@ -268,7 +276,7 @@ $.ajaxSetup({
             processData: false,
             dataType: 'json',
             success:function(data){
-                console.log('hiiiiiiiiiiiiiiiiii');
+                toastr.success(data.success);
           }
        });
   
@@ -276,6 +284,7 @@ $.ajaxSetup({
 
 
 </script>
+
 
 
 @endsection
