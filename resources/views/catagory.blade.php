@@ -43,6 +43,22 @@
                                         </div>
                                     </div>
 
+                                    <div class="row g-3 align-center">
+
+                                        <div class="col-lg-7">
+                                            <div class="form-group">
+                                                <div class="form-control-wrap">
+                                                    <select name="nav" id="nav">
+                                                        <option value="Home Furniture">Home Furniture</option>
+                                                        <option value="Office Furniture">Office Furniture</option>
+                                                        <option value="Interior">Interior</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
 
                                     <div class="row g-3">
                                         <div class="col-lg-7 offset-lg-5">
@@ -70,6 +86,7 @@
                                                 <th class="pro-id">Id</th>
                                                 <th class="pro-name">Name</th>
                                                 <th class="pro-thumb">Thumbnail</th>
+                                                <th class="pro-thumb">Nav Item</th>
                                                 <th class="pro-remove">Delete</th>
                                                 <th class="pro-status">status</th>
                                             </tr>
@@ -82,6 +99,7 @@
                                                 <td>{{$catagory->id}}</td>
                                                 <td>{{$catagory->catagoryName}}</td>
                                                 <td><img src="{{ url('photos/'.$catagory->image) }}" width="140" height="150"></td>
+                                                <td>{{$catagory->nav}}</td>
                                                 <td>
                                                     <form action="{{route('deleteCatagory')}}" method="post">
                                                         @csrf

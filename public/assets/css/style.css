@@ -7312,3 +7312,92 @@ body.home15-funiture-template {
     transition: filter 400ms, -webkit-filter 400ms;
     -webkit-transition: filter 400ms, -webkit-filter 400ms;
 }
+
+/*
+Isotop gallery
+*/
+
+.gallery {
+    padding: 30px 0;
+    color: #333;
+}
+.gallery .top-side {
+    text-align: center;
+}
+.gallery .top-side .title {
+    font-weight: 500;
+    font-size: 15px;
+    display: inline-block;
+}
+.gallery .top-side .title:after {
+    content: '';
+    display: block;
+    width: 50%;
+    border-bottom: 1px solid #494949;
+    margin: 8px auto;
+}
+.gallery .top-side h2 {
+    font-weight: 700;
+}
+.gallery.portfolio .filters {
+    text-align: center;
+    margin-top: 50px;
+}
+.gallery.portfolio .filters ul {
+    padding: 0;
+}
+.gallery.portfolio .filters ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 10px 10px;
+    cursor: pointer;
+    position: relative;
+}
+.gallery.portfolio .filters ul li:after {
+    content: '';
+    display: block;
+    width: calc(0% - 60px);
+    position: absolute;
+    height: 2px;
+    background: #333;
+    transition: width 350ms ease-out;
+}
+.gallery.portfolio .filters ul li:hover:after {
+    width: calc(100% - 60px);
+    transition: width 350ms ease-out;
+}
+.gallery.portfolio .filters ul li.active:after {
+    width: calc(100% - 60px);
+}
+.gallery.portfolio .filters-content {
+    margin-top: 50px;
+}
+.gallery.portfolio .filters-content .show {
+    opacity: 1;
+    visibility: visible;
+    transition: all 350ms;
+}
+.gallery.portfolio .filters-content .hide {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 350ms;
+}
+.gallery.portfolio .filters-content .item {
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+.gallery.portfolio .filters-content .item .p-inner {
+    padding: 20px 30px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+.gallery.portfolio .filters-content .item .p-inner h5 {
+    font-size: 15px;
+}
+.gallery.portfolio .filters-content .item .p-inner .cat {
+    font-size: 13px;
+}
+.gallery.portfolio .filters-content .item img {
+    width: 100%;
+}
+/* isotop gallery end */

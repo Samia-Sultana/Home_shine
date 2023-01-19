@@ -18,6 +18,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\GalleryController;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,8 @@ Route::get('/services',[FaqController::class,'viewServices'])->name('services');
 
 Route::post('/contact', [ContactController::class,'store'])->middleware(['auth'])->name('contactCompany');
 Route::post('/services', [FaqController::class,'store'])->middleware(['auth'])->name('faqCompany');
+// gallery
+Route::get('/gallery', [GalleryController::class,'viewPhotos'])->name('gallery');
 
 
 require __DIR__.'/auth.php';
@@ -128,6 +131,9 @@ Route::prefix('admin')->group(function(){
     Route::post('/faq',[FaqController::class,'store'])->middleware(['auth:admin', 'verified'])->name('faq');
     Route::post('/faq/delete',[FaqController::class,'destroy'])->middleware(['auth:admin', 'verified'])->name('deleteFaq');
 
+    Route::get('/photos',[GalleryController::class,'index_photos'])->middleware(['auth:admin', 'verified'])->name('photos');
+    Route::post('/photos',[GalleryController::class,'addPhotos'])->middleware(['auth:admin', 'verified'])->name('addPhotos');
+    Route::post('/photo/delete',[GalleryController::class,'deletePhotos'])->middleware(['auth:admin', 'verified'])->name('deletePhoto');
 
 
 

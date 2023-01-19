@@ -33,10 +33,15 @@
     <link media="screen" rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
+ 
+
     <style>
         body {
             background-color: #f5f5f5;
         }
+        .grid-item {
+             width: 25%; 
+            }
     </style>
 </head>
 
@@ -58,6 +63,7 @@
 @yield('contact')
 @yield('services')
 @yield('about')
+@yield('gallery')
 
 
 
@@ -83,6 +89,8 @@
 <script src="{{ asset('assets/alertifyjs/alertify.min.js' )}}"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> </script>
+
+
 <!--End Instagram Js-->
 <script>
     @if(Session::has('message'))

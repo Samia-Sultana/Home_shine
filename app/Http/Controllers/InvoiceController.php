@@ -17,7 +17,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $orders = Invoice::where('status','pending')->Orwhere('status','processing')->get();
+        $orders = Invoice::all();
         return view('order',compact('orders'));
 
     }

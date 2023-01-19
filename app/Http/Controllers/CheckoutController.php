@@ -44,12 +44,7 @@ class CheckoutController extends Controller
         $zip = $request->input('zip');
         $shipping = $request->input('location');
         $note = $request->input('note');
-        if($shipping == 1){
-            $shipping = 80;
-        }
-        else if( $shipping == 0 ){
-            $shipping = 150;
-        }
+        
 
         //validation
 
@@ -64,7 +59,6 @@ class CheckoutController extends Controller
         $invoice['zip'] = $zip;
         $invoice['status'] = "pending";
         $invoice['user_id'] = Auth::guard('web')->user()->id;
-        $invoice['shipping_charge'] = $shipping;
         $invoice['note'] = $note;
         $invoice->save();
         

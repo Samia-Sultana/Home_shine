@@ -89,9 +89,8 @@
                             <div class="product-single__description rte">
                                 <?php 
                                 $text = App\Models\Product::find($productDetail->id);
-                                $text2 = html_entity_decode($text['description']); 
-                                echo $text2;
                                 ?>
+                                {{$text['description']}}
                               
                             </div>
                             <!----------  <div id="quantity_message">Hurry! Only <span class="items">4</span> left in stock.</div>

@@ -25,56 +25,57 @@
                                 <form enctype="multipart/form-data" method="POST" action="{{ route('createProduct') }}" class="d-flex">
                                     @csrf
                                     <div class="row">
-                                    <div class="">
-                                        <label for="productName">Product Name</label><br>
-                                        <input type="text" id="productName" name="productName" value=""><br>
-
-                                        
-
-                                    </div>
-
-                                    <div class="">
-                                        <label for="thumbnail">Thumbnail Image</label><br>
-                                        <input type="file" id="thumbnail" name="thumbnail" value=""><br><br>
-
-                                        <label for="image">images</label><br>
-                                        <input type="file" id="image" name="images[]" multiple="multiple" /><br><br>
+                                        <div class="">
+                                            <label for="productName">Product Name</label><br>
+                                            <input type="text" id="productName" name="productName" value=""><br>
 
 
-                                    </div>
+
+                                        </div>
+
+                                        <div class="">
+                                            <label for="thumbnail">Thumbnail Image</label><br>
+                                            <input type="file" id="thumbnail" name="thumbnail" value=""><br><br>
+
+                                            <label for="image">images</label><br>
+                                            <input type="file" id="image" name="images[]" multiple="multiple" /><br><br>
+
+
+                                        </div>
 
                                     </div>
                                     <div class="row">
-                                    <div class="p-2">
-                                        <label for="catagory">Choose a catagory:</label>
-                                        <select name="catagory" id="catagory">
-                                            @foreach($catagories as $catagory )
-                                            @if($catagory->status == "enable")
-                                            <option value="{{$catagory->catagoryName}}">{{$catagory->catagoryName}}</option>
-                                            @endif
-                                            @endforeach
-                                        </select>
-                                        </br></br>
-                                        
+                                        <div class="p-2">
+                                            <label for="catagory">Choose a catagory:</label>
+                                            <select name="catagory" id="catagory">
+                                                @foreach($catagories as $catagory )
+                                                @if($catagory->status == "enable")
+                                                <option value="{{$catagory->catagoryName}}">{{$catagory->catagoryName}}</option>
+                                                @endif
+                                                @endforeach
+                                            </select>
+                                            </br></br>
 
-                                        
+
+
+                                        </div>
                                     </div>
-                                    </div>
-                                    
+
                                     <div class="col-lg-5">
-                                            <div class="form-group">
-                                                <div class="form-control-wrap">
-                                                    <textarea class="form-control" type="text" id="description" name="description" value=""> </textarea>
-                                                </div>
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <label for="" description>Description</label>
+                                                <textarea class="form-control" type="text" id="description" name="description" value=""> </textarea>
                                             </div>
                                         </div>
-                                    
+                                    </div>
 
-                                        <div class="row">
-                                            <div class="col-lg-3" style="text-align:center;">
+
+                                    <div class="row">
+                                        <div class="col-lg-3" style="text-align:center;">
                                             <input type="submit" value="Submit" class="btn btn-primary">
-                                            </div>
                                         </div>
+                                    </div>
                                 </form>
 
                             </div>
@@ -89,8 +90,7 @@
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <!-- <th class="pro-thumbnail">Thumbnail</th>
-                                    <th class="pro-title">Product</th> -->
+                                               
                                                 <th class="pro-id">Id</th>
                                                 <th class="pro-sku">SKU</th>
                                                 <th class="pro-price">Price</th>
@@ -148,21 +148,23 @@
                                                                             <label for="update_image">images</label><br>
                                                                             <input type="file" id="update_image" name="update_images[]" multiple="multiple" /><br><br>
 
-                                                                        </div>
-
-                                                                        <div>
-
-
-
-
-                                                                            
-
-                                                                            <br><br>
                                                                             <label for="update_quantity"> Quantity</label><br>
                                                                             <input type="text" id="update_quantity" name="update_quantity" value="{{$product->totalStock}}"><br><br>
 
+
+
                                                                         </div>
 
+
+
+                                                                        <div class="row">
+                                                                            <?php
+                                                                            $productDetail = App\Models\Product::find($product->product_id);
+
+                                                                            ?>
+                                                                            <textarea class="form-control" type="text" id="update_description" name="update_description">{{ $productDetail->description}} </textarea>
+
+                                                                        </div>
 
                                                                     </form>
 
@@ -176,7 +178,7 @@
                                                     </div>
 
                                                     <!-- Modal -->
-                                                    
+
                                                 </td>
                                                 <td>
                                                     <select name="status" id="status" class="btn btn-success status">
@@ -188,10 +190,17 @@
                                             </tr>
 
                                             @endforeach
+                                        </tbody>
+</table>
+
                                 </div>
+                                <div>
+                            {{$allProducts->links()}}
+                        </div>
                             </div>
 
                         </div>
+                        
 
                     </div><!-- .nk-block -->
 
@@ -201,22 +210,22 @@
     </div>
 </div>
 <!-- content @e -->
- <!-- Including Jquery -->
- <script src="{{asset('assets/js/vendor/jquery-3.3.1.min.js')}}"></script>
-        <script src="{{asset('assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
-        <script src="{{asset('assets/js/vendor/jquery.cookie.js')}}"></script>
-        <script src="{{asset('assets/js/vendor/wow.min.js')}}"></script>
-        <script src="{{asset('assets/js/vendor/instagram-feed.js')}}"></script>
-        <!-- Including Javascript -->
-        <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('assets/js/plugins.js')}}"></script>
-        <script src="{{asset('assets/js/popper.min.js')}}"></script>
-        <script src="{{asset('assets/js/lazysizes.js')}}"></script>
-        <script src="{{asset('assets/js/main.js')}}"></script>
-        <script src="{{asset('assets/js/cart.js')}}"></script>
-        <script src="{{asset('assets/alertifyjs/alertify.min.js')}}"></script>
-        <!--End Instagram Js-->
-        
+<!-- Including Jquery -->
+<script src="{{asset('assets/js/vendor/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
+<script src="{{asset('assets/js/vendor/jquery.cookie.js')}}"></script>
+<script src="{{asset('assets/js/vendor/wow.min.js')}}"></script>
+<script src="{{asset('assets/js/vendor/instagram-feed.js')}}"></script>
+<!-- Including Javascript -->
+<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins.js')}}"></script>
+<script src="{{asset('assets/js/popper.min.js')}}"></script>
+<script src="{{asset('assets/js/lazysizes.js')}}"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
+<script src="{{asset('assets/js/cart.js')}}"></script>
+<script src="{{asset('assets/alertifyjs/alertify.min.js')}}"></script>
+<!--End Instagram Js-->
+
 <script src="{{ asset('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')}}"></script>
 <script src="{{ asset('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js')}}"> </script>
 <script src="{{ asset('http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false')}}"></script>
@@ -227,19 +236,19 @@
 <script>
     @if(Session::has('message'))
     var type = "{{ Session::get('alert-type','info') }}"
-    switch(type){
+    switch (type) {
         case 'info':
             toastr.info(" {{ Session::get('message') }} ");
-        break;
+            break;
         case 'success':
             toastr.success(" {{ Session::get('message') }} ");
-        break;
+            break;
         case 'warning':
             toastr.warning(" {{ Session::get('message') }} ");
-        break;
+            break;
         case 'error':
             toastr.error(" {{ Session::get('message') }} ");
-        break;
+            break;
     }
     @endif
 </script>
@@ -250,9 +259,6 @@
 <script src="{{asset('adminFrontend/assets/js/ckeditor/ckeditor.js')}}"></script>
 
 
-<script>
-    CKEDITOR.replace('description');
-</script>
 
 
 
@@ -265,17 +271,17 @@
     var sku =$button.parent().prev().find("input#update_sku").val();
     var price = $button.parent().prev().find("input#update_price").val();
     var quantity =$button.parent().prev().find("input#update_quantity").val() ;
- 
+    var editordata = $button.parent().prev().find("textarea#update_description").val();
     var thumbnail = $button.parent().prev().find("input#update_thumbnail")[0].files;
     var multiImage = $button.parent().prev().find("input#update_image")[0].files;
     var totalImage = $button.parent().prev().find("input#update_image")[0].files.length;
-
+console.log(editordata);
     var fd = new FormData();
     fd.append('id',id);
     fd.append('price',price);
     fd.append('quantity',quantity);
     fd.append('sku',sku);
-    
+    fd.append('editordata',editordata);
     fd.append('thumbnail',thumbnail[0]);
     fd.append('totalImage', totalImage);
 

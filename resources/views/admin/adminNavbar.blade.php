@@ -94,6 +94,9 @@
                               <li class="nk-menu-item">
                               <a href="{{ route('viewFaq') }}" class="nk-menu-link"><span class="nk-menu-text">Question and Answer</span></a>
                               </li>
+                              <li class="nk-menu-item">
+                              <a href="{{ route('photos') }}" class="nk-menu-link"><span class="nk-menu-text">Gallery</span></a>
+                              </li>
                               
 
 

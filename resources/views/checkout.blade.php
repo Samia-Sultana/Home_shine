@@ -80,24 +80,12 @@
                                     </div>
 
                                     <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
-                                        <label for="location">Choose location </label>
-
-                                        <select name="location" id="location" class="location" required >
-                                            <option value="">Choose..</option>
-                                            <option value="1">Inside Dhaka</option>
-                                            <option value="0">Outside Dhaka</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <div class="row">
-                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
                                         <label for="zip">Postcode </label>
                                         <input type="text" name="zip" id="zip" required>
                                     </div>
                                 </div>
                             </fieldset>
+                            
 
                             <fieldset>
                                 <div class="row">
@@ -120,6 +108,7 @@
                             <h2 class="order-title mb-4">Your Order</h2>
 
                             <div class="table-responsive-sm order-table">
+                                <h3 style="text-align: center;color:red; font-size:larger">Shipping cost will be added</h3>
                                 <table class="bg-white table table-bordered table-hover text-center">
                                     <thead>
                                         <tr>
@@ -146,10 +135,6 @@
                                     </tbody>
                                     <tfoot class="font-weight-600">
                                         <input type="hidden" value="{{$subTotal}}" class="subTotal">
-                                        <tr>
-                                            <td colspan="3" class="text-right ">Shipping </td>
-                                            <td class="location"></td>
-                                        </tr>
                                         <tr>
                                             <td colspan="3" class="text-right">Total</td>
                                             <td class="grandTotal">{{$subTotal}}</td>

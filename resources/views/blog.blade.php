@@ -46,6 +46,7 @@
                                         <div class="col-lg-7">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
+                                                    <label for=""description>Description</label>
                                                     <textarea class="form-control" type="text" id="description" name="description" value=""> </textarea>
                                                 </div>
                                             </div>
@@ -101,7 +102,7 @@
                                                 </td>
                                                 <td>
                                                     <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="{{'#update_product_'.$blog->id}}">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="{{'#update_product_'.$blog->id}}" onclick="test('<?php echo $blog->id;?>')">
                                                         Update
                                                     </button>
                                                     <div class="modal fade" id="{{'update_product_' . $blog->id}}" tabindex="-1" role="dialog" aria-labelledby="update_product_lebel" aria-hidden="true">
@@ -135,7 +136,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
-                                                                        <textarea class="form-control" type="text" id="update_description" name="update_description"  > <?php echo $blog->description ?> </textarea>
+                                                                        <textarea class="form-control update_description" type="text" id="update_description" name="update_description"  >  {{$blog->description}} </textarea>
                                                                         </div>
 
 
@@ -161,6 +162,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                {{$blogs->links()}}
                             </div>
 
                         </div>
@@ -202,11 +204,7 @@
 <script src="{{ asset('bootstrap/js/bootstrap-modal.js')}}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap-transition.js')}}"></script>
 
-<script>
-   
-   CKEDITOR.replace('description');
-   CKEDITOR.replace('update_description');
-</script>
+
 
 
 <script type="text/Javascript">
@@ -233,14 +231,7 @@
 
     });
 </script>
-<!---<script>
-        CKEDITOR.replace( 'update_description_3', { } );
-        function test()
-        {
-            var x = CKEDITOR.instances.content.GetData();
-            console.log( x );
-        }
-    </script>---->
+
 
 
 <script type="text/Javascript">
@@ -257,7 +248,7 @@
     var fd = new FormData();
     fd.append('id',id);
     fd.append('title',title);
-    fd.append('description',editordata);
+    fd.append('editordata',editordata);
     fd.append('thumbnail',thumbnail[0]);
     
    

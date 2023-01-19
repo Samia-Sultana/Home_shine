@@ -30,7 +30,7 @@
                             <li><a href="{{route('dashboard')}}">Account</a></li>
                             <li><a href="{{route('login')}}">Login</a></li>
                             <li><a href="{{route('register')}}">Create Account</a></li>
-                           
+
                         </ul>
                     </div>
                 </div>
@@ -61,22 +61,48 @@
                         <!--Desktop Menu-->
                         <nav class="grid__item" id="AccessibleNav">
                             <!-- for mobile -->
+
                             <ul id="siteNav" class="site-nav medium center hidearrow">
-                                <li class="lvl1 parent dropdown"><a href="#">Products <i class="anm anm-angle-down-l"></i></a>
+                                <li class="lvl1 parent dropdown"><a href="#">Home Furniture <i class="anm anm-angle-down-l"></i></a>
+                                    @php
+                                    $catagories = App\Models\Catagory::where('nav',"=",'Home Furniture')->get();
+                                    @endphp
                                     <ul class="dropdown">
-                                        @php
-                                        $catagories = App\Models\Catagory::all();
-                                        @endphp
                                         @foreach($catagories as $catagory)
                                         @if($catagory->status == "enable")
                                         <li><a href="{{'/catagory/'.$catagory->id}}" class="site-nav">{{$catagory->catagoryName}}</a></li>
                                         @endif
                                         @endforeach
-
-
-
                                     </ul>
                                 </li>
+                                <li class="lvl1 parent dropdown"><a href="#">Office Furniture <i class="anm anm-angle-down-l"></i></a>
+                                    @php
+                                    $catagories = App\Models\Catagory::where('nav',"=",'Office Furniture')->get();
+                                    @endphp
+                                    <ul class="dropdown">
+                                        @foreach($catagories as $catagory)
+                                        @if($catagory->status == "enable")
+                                        <li><a href="{{'/catagory/'.$catagory->id}}" class="site-nav">{{$catagory->catagoryName}}</a></li>
+                                        @endif
+                                        @endforeach
+                                    </ul>
+                                </li>
+                                <li class="lvl1 parent dropdown"><a href="#">Interrior <i class="anm anm-angle-down-l"></i></a>
+                                    @php
+                                    $catagories = App\Models\Catagory::where('nav',"=",'Interior')->get();
+                                    @endphp
+                                    <ul class="dropdown">
+                                        @foreach($catagories as $catagory)
+                                        @if($catagory->status == "enable")
+                                        <li><a href="{{'/catagory/'.$catagory->id}}" class="site-nav">{{$catagory->catagoryName}}</a></li>
+                                        @endif
+                                        @endforeach
+                                    </ul>
+                                </li>
+
+
+
+
                                 @php
                                 $navItems = App\Models\Navbar::all();
                                 @endphp
@@ -86,6 +112,7 @@
                                 </li>
                                 @endif
                                 @endforeach
+                                <li><a href="{{ route('gallery') }}">Gallery</a></li>
 
                             </ul>
                         </nav>
@@ -103,7 +130,7 @@
                         </div>
                     </div>
                     <div class="col-4 col-sm-3 col-md-3 col-lg-2">
-                        
+
                         <div class="site-cart">
                             <a href="{{route('shoppingCart')}}" title="Cart" style="font-size: large;">
                                 <i class="icon anm anm-bag-l"></i>
@@ -111,7 +138,7 @@
                             </a>
                         </div>
                         <div>
-                            <a href="{{url('/view-wishlist')}}" class="site-cart" style="font-size: large; margin-right:15px;" > <i class="icon anm anm-heart-l" aria-hidden="true"></i></a>
+                            <a href="{{url('/view-wishlist')}}" class="site-cart" style="font-size: large; margin-right:15px;"> <i class="icon anm anm-heart-l" aria-hidden="true"></i></a>
                         </div>
                         <!----   <div id="header-cart" class="block block-cart" >
                             <ul class="mini-products-list"></ul>
@@ -128,7 +155,7 @@
                         <div class="site-header__search">
                             <button type="button" class="search-trigger"><i class="icon anm anm-search-l"></i></button>
                         </div>
-                       
+
 
                     </div>
 
@@ -144,16 +171,21 @@
         <ul id="MobileNav" class="mobile-nav">
             <li class="lvl1 parent megamenu"><a href="index.html">Home </a>
             </li>
-            <li class="lvl1 parent dropdown"><a href="#">Products <i class="anm anm-plus-l"></i></a>
+            <li class="lvl1 parent dropdown"><a href="#">Home Furniture <i class="anm anm-plus-l"></i></a>
                 <ul>
-                    @php
-                    $navItems = App\Models\Catagory::all();
-                    @endphp
-                    @foreach($catagories as $catagory)
-                    @if($catagory->status == "enable")
-                    <li><a href="{{'/catagory/'.$catagory->id}}" class="site-nav">{{$catagory->catagoryName}}</a></li>
-                    @endif
-                    @endforeach
+
+
+                </ul>
+            </li>
+            <li class="lvl1 parent dropdown"><a href="#">Office Furniture <i class="anm anm-plus-l"></i></a>
+                <ul>
+
+
+                </ul>
+            </li>
+            <li class="lvl1 parent dropdown"><a href="#">Interrior<i class="anm anm-plus-l"></i></a>
+                <ul>
+
 
                 </ul>
             </li>

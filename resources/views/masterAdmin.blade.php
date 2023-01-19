@@ -11,18 +11,53 @@
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="{{ asset('adminFrontend/images/favicon.png')}}">
     <!-- Page Title  -->
-    <title>DashLite Template</title>
+    <title></title>
     <!-- StyleSheets  -->
-    <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" media="screen">
-    <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="{{ asset('adminFrontend/assets/css/dashlite.css?ver=3.1.1')}}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('adminFrontend/assets/css/theme.css?ver=3.1.1')}}">
-    <!---------toaster message -------------->
-    <link media="screen" rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> </script>
-</head>
+    
+    <link rel="stylesheet" type="text/css" 
+     href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+     <!----------- master user styles ---------------->
+   
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('userFrontend/assets/img/favicon/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('userFrontend/assets/img/favicon/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('userFrontend/assets/img/favicon/favicon-16x16.png')}}">
+    <link rel="manifest" href="{{ asset('userFrontend/assets/img/favicon/site.webmanifest')}}">
+  
+    <link href="{{ asset('userFrontend/assets/css/bootstrap.min.css')}}" rel="stylesheet" />
+
+    <link href="{{ asset('userFrontend/assets/css/font-awesome.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('userFrontend/assets/css/themify-icons.css')}}" rel="stylesheet" />
+    <link href="{{ asset('userFrontend/assets/css/flaticon-set.css')}}" rel="stylesheet" />
+    <link href="{{ asset('userFrontend/assets/css/elegant-icons.css')}}" rel="stylesheet" />
+    <link href="{{ asset('userFrontend/assets/css/magnific-popup.css')}}" rel="stylesheet" />
+    <link href="{{ asset('userFrontend/assets/css/owl.carousel.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('userFrontend/assets/css/owl.theme.default.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('userFrontend/assets/css/animate.css')}}" rel="stylesheet" />
+    <link href="{{ asset('userFrontend/assets/css/bootsnav.css')}}" rel="stylesheet" />
+    <link href="{{ asset('userFrontend/assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('userFrontend/assets/css/style1.css')}}" rel="stylesheet">
+    <link href="{{ asset('userFrontend/assets/css/responsive.css')}}" rel="stylesheet" />
+   
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" 
+     href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!-------------------------end master user ------->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!------------datatable------------------>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" >
+
+    
+</head>
 
 
 
@@ -41,6 +76,7 @@
 @yield('catagory')
 @yield('contactView')
 @yield('faqview')
+@yield('photos')
 
 
 
@@ -48,34 +84,34 @@
 
 
 
- <!-- JavaScript -->
- <script src="{{ asset('adminFrontend/assets/js/bundle.js?ver=3.1.1')}}"></script>
-    <script src="{{ asset('adminFrontend/assets/js/scripts.js?ver=3.1.1')}}"></script>
-    <!----Jquery----->
-    <script src="{{ asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-    <!--=====popper js=====-->
-    <script src="{{ asset('assets/js/popper.min.js')}}"></script>
-    <!--=====bootstrap=====-->
-    <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
-    <!--=====Owl carousel=====-->
-    <script src="{{ asset('assets/js/owl.carousel.min.js')}}"></script>
-    <!--=====header script=====-->
-    <script src="{{ asset('assets/js/script.js')}}"></script>
-    <!--=====header script=====-->
-    <script src="{{ asset('assets/js/main.js')}}"></script>
-    <!--=====modal script=====-->
- 
+<!-- JavaScript -->
+<script src="{{ asset('adminFrontend/assets/js/bundle.js?ver=3.1.1')}}"></script>
+<script src="{{ asset('adminFrontend/assets/js/scripts.js?ver=3.1.1')}}"></script>
 
-   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> </script>
+<script src="{{asset('adminFrontend/assets/js/ckeditor.js')}}"></script>
+
     
-    <script src="{{ asset('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')}}"></script>
-    <script src="{{ asset('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js')}}"> </script>
-    <script src="{{ asset('http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false')}}"></script>
-    <script src="{{ asset('bootstrap/js/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('bootstrap/js/bootstrap-modal.js')}}"></script>
-    <script src="{{ asset('bootstrap/js/bootstrap-transition.js')}}"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"> </script>
+<!----Jquery----->
+<script src="{{ asset('adminFrontend/assets/js/jquery-3.6.0.min.js')}}"></script>
+<!--=====popper js=====-->
+<script src="{{ asset('adminFrontend/assets/js/popper.min.js')}}"></script>
+<!--=====bootstrap=====-->
+<script src="{{ asset('adminFrontend/assets/js/bootstrap.min.js')}}"></script>
+<!--=====Owl carousel=====-->
+<script src="{{ asset('adminFrontend/assets/js/owl.carousel.min.js')}}"></script>
+<!--=====header script=====-->
+<script src="{{ asset('adminFrontend/assets/js/script.js')}}"></script>
+<!--=====header script=====-->
+<script src="{{ asset('adminFrontend/assets/js/main.js')}}"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+<!------data tables --------------->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
+
     <script>
     @if(Session::has('message'))
     var type = "{{ Session::get('alert-type','info') }}"

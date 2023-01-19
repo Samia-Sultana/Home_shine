@@ -143,7 +143,7 @@ $(".btn-remove").click(function(e) {
               
             },
             success: function(data) {
-                toastr.success(data.pid);
+                toastr.success(data.success);
             }
         });
 

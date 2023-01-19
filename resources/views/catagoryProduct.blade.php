@@ -130,7 +130,7 @@
                 </div>
                 <div class="infinitpaginOuter">
                     <div class="infinitpagin">
-                        <a href="#" class="btn loadMore">Load More</a>
+                        {{$catagoryProducts->links()}}
                     </div>
                 </div>
             </div>

@@ -51,6 +51,7 @@ class CatagoryController extends Controller
         $catagory = new Catagory();
         $catagory['catagoryName'] = $request->catagoryName;
         $catagory['image'] = $filename;
+        $catagory['nav'] = $request->get('nav');
         $catagory->save();
     }
         
@@ -67,7 +68,7 @@ class CatagoryController extends Controller
     public function show(Catagory $catagory, $id)
     {
         $catagory = Catagory::find($id);
-        $catagoryProducts = Product::where('catagory', $catagory->catagoryName)->get();
+        $catagoryProducts = Product::where('catagory', $catagory->catagoryName)->paginate(12);
         $catagoryName =  $catagory->catagoryName;
         $catagories = Catagory::all();
         $logo = Logo::get()->last();

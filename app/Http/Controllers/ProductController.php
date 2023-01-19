@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function index()
     {
         $catagories = Catagory::all();
-        $allProducts = Stock::all();
+        $allProducts = Stock::paginate(16);
 
         return view('product', compact('catagories', 'allProducts'));
     }
@@ -141,14 +141,15 @@ class ProductController extends Controller
         $sku = $request->get('sku');
         $price = $request->get('price');
         $quantity = $request->get('quantity');
+        $description = $request->get('editordata');
         
-        $catagory = $request->get('catagory');
+        
         
 
-        if($catagory || $request->file('thumbnail')){
+        if($request->file('thumbnail') || $description){
             $product = Product::find($id);
-            $product['catagory'] = $catagory;
-            
+           
+            $product['description'] = $description;
             
 
 
@@ -237,7 +238,7 @@ class ProductController extends Controller
     // Show all products
     public function showAllProducts()
     {
-        $allProductsData = Product::all();
+        $allProductsData = Product::paginate(12);
         $catagories = Catagory::all();
         $logo = Logo::get()->last();
         $navigation = Navbar::all();

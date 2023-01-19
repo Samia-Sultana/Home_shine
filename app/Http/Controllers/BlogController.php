@@ -10,7 +10,7 @@ class BlogController extends Controller
 {
     public function index(){
       
-        $blogs= Blog::all();
+        $blogs= Blog::paginate(8);
         return view('blog', compact('blogs'));
 
     }
@@ -41,7 +41,7 @@ class BlogController extends Controller
     }
     public function show(Request $request){
        
-        $blogs = Blog::all();
+        $blogs = Blog::paginate(2);
         return view('blogGrid', compact('blogs'));
     }
     public function viewBlog($id){
@@ -63,7 +63,7 @@ class BlogController extends Controller
     public function updateBlog(Request $request){
         $id = $request->input('id');
         $title = $request->input('title');
-        $description = $request->input('description');
+        $description = $request->input('editordata');
 
         $blog = Blog::find($id);
         $blog['title'] = $title;

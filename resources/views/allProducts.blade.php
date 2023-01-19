@@ -128,11 +128,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="infinitpaginOuter">
-                    <div class="infinitpagin">
-                        <a href="#" class="btn loadMore">Load More</a>
-                    </div>
-                </div>
+               
+                        {{$allProductsData->links()}}
+                    
             </div>
             <!--End Main Content-->
         </div>

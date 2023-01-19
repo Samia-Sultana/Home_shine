@@ -84,7 +84,7 @@
         <thead>
             <tr>
                 <th width="50%" colspan="2">
-                    <h2 class="text-start">Maknoon Lifestyle</h2>
+                    <h2 class="text-start">Home Shine</h2>
                 </th>
                 <th width="50%" colspan="2" class="text-end company-data">
                     <span>Invoice Id: #{{$data['invoice']->id}}</span> <br>
@@ -162,22 +162,18 @@
                 
             </tr>
             @endforeach
-            <tr>
-            <td colspan="4" >Shipping- </td>
-            <td colspan="1" >{{$data['invoice']->shipping_charge}}</td>
-            </tr>
-            
+           
             <tr>
                 
                 <td colspan="4" class="total-heading">Total Amount - <small>Inc. all vat/tax</small> :</td>
-                <td colspan="1" class="total-heading">{{$data['total'] + $data['invoice']->shipping_charge}}</td>
+                <td colspan="1" class="total-heading">{{$data['total'] }}</td>
             </tr>
         </tbody>
     </table>
 
     <br>
     <p class="text-center">
-        Thank your for shopping with Maknoon Lifestyle
+        Thank your for shopping with Home Shine
     </p>
 
 </body>
