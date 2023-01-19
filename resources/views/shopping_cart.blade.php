@@ -35,12 +35,12 @@
                                 <td>{{$product->price}}</td>
                                 <td class="pro-quantity">
                                     <form action="#" class="display-flex">
-                                        <input type="hidden" value="{{$product->sku}}" id="prod-sku">
+                                        <input type="hidden" value="{{$product->barcode}}" id="prod-sku">
                                         <div class="d-flex flex-row justify-content-between">
                                             <button class="button-qty inc" type="button">
                                                 <i class="fa fa-plus"></i></button>
                                              <input type="text" value="{{$product->qty}}" readonly id="prod-qty">
-                                            <input type="hidden" value="{{$product->id}}" id="prod-id">
+                                            <input type="hidden" value="{{$product->barcode}}" id="prod-id">
                                             
                                             <button class="button-qty dec" type="button">
                                                 <i class="fa fa-minus"></i>
@@ -52,8 +52,7 @@
                                 <td>
                                     <form action="{{route('removeCartProduct')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                                        <input type="hidden" value="{{$product->sku}}" name="product_sku" id="product_sku">
+                                        <input type="hidden" value="{{$product->barcode}}" name="barcode" id="barcode">
                                         <button type="submit" class="remove">remove</button>
                                     </form>
                                 </td>
@@ -79,7 +78,6 @@
                         <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Subtotal</strong></span>
                         <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="money" id="Subtotal">{{$subTotal}}</span></span>
                     </div>
-
                     <a style="margin-top: 20px;" href="{{route('checkoutPage')}}" class="btn btn--small-wide checkout">Go for checkout</a>
 
                 </div>
@@ -100,9 +98,9 @@
 
         var $button = $(this);
         var oldQuantity = $button.parent().find("input:even").val();
-        var productId = $button.parent().find("input:odd").val();
-        var productSku = $button.parent().prev().val();
-        console.log(oldQuantity,productId,productSku);
+        var productBarcode = $button.parent().find("input:odd").val();
+        
+        console.log(oldQuantity,productBarcode);
         var newQuantity;
         $button.blur();
         if ($button.hasClass("inc")) {
@@ -126,7 +124,7 @@
         $.ajax({
             type:'POST',
             url:"{{ route('updateShoppingCart') }}",
-            data:{productId:productId, newQuantity:newQuantity, productSku:productSku},
+            data:{newQuantity:newQuantity, barcode:productBarcode},
             success:function(data){
                 var productPrice = $button.parents(".pro-quantity").prev().text();
                 $button.parent().find("input:even").val(newQuantity);
@@ -136,10 +134,9 @@
                 var subTotal = cart.reduce(function(accumulator,currentItem){
                     return accumulator + (currentItem.qty * currentItem.price);
                 },0);
-                var grandTotal = subTotal ;
-                //console.log(grandTotal);
-                $button.parents(".cart-detail-row").next().find("span.money").text(subTotal);
-                //$button.parents(".cart-detail-row").next().find("td.grand-total").text(grandTotal);
+               
+                $button.parents(".cart-detail-row").next().find("span#Subtotal").text(subTotal);
+               
                 
             }
         });

@@ -17,6 +17,7 @@ class CreateNavbarsTable extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('url')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

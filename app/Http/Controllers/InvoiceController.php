@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $orders = Invoice::all();
+        $orders = Order::all();
         return view('order',compact('orders'));
 
     }
@@ -90,16 +91,15 @@ class InvoiceController extends Controller
     }
     public function viewInvoice($id){
 
-         $invoice = DB::table('invoices')->find($id);
-         $orderDetail = DB::table('orderdetails')->where('orderinvoice_id', '=', $id)->get();
-         $user_ids = DB::table('orderdetails')->select('user_id')->where('orderinvoice_id', '=', $id)->get();
-         $user = DB::table('users')->select('name')->where('id', '=', $user_ids[0]->user_id)->get();
+         $invoice = DB::table('orders')->find($id);
+         $orderDetail = DB::table('orderdetails')->where('order_id', '=', $id)->get();
+         $user = DB::table('users')->select('name')->where('id', '=', $invoice->user_id)->get();
          $products = [];
          $total = 0;
          foreach($orderDetail as $item){
-            $product = DB::table('products')->find($item->product_id);
-            array_push($products,$product);
-            $total = $total + ($product->price * $item->quantity);
+            $product = DB::table('purchases')->where('barcode',$item->barcode_no)->get();
+            array_push($products,$product[0]);
+            $total = $total + ($product[0]->selling_price * $item->quantity);
          }
          $data = array(
             "user"=>$user[0],
@@ -112,16 +112,15 @@ class InvoiceController extends Controller
         
     }
     public function generateInvoice($id){
-        $invoice = DB::table('invoices')->find($id);
-         $orderDetail = DB::table('orderdetails')->where('orderinvoice_id', '=', $id)->get();
-         $user_ids = DB::table('orderdetails')->select('user_id')->where('orderinvoice_id', '=', $id)->get();
-         $user = DB::table('users')->select('name')->where('id', '=', $user_ids[0]->user_id)->get();
+        $invoice = DB::table('orders')->find($id);
+         $orderDetail = DB::table('orderdetails')->where('order_id', '=', $id)->get();
+         $user = DB::table('users')->select('name')->where('id', '=', $invoice->user_id)->get();
          $products = [];
          $total = 0;
          foreach($orderDetail as $item){
-            $product = DB::table('products')->find($item->product_id);
-            array_push($products,$product);
-            $total = $total + ($product->price * $item->quantity);
+            $product = DB::table('purchases')->where('barcode',$item->barcode_no)->get();
+            array_push($products,$product[0]);
+            $total = $total + ($product[0]->selling_price * $item->quantity);
          }
         // dd($orderDetail[0]);
          $data = array(

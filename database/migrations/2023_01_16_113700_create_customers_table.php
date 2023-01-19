@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCityAndPhoneInUsersTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class AddCityAndPhoneInUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('city')->nullable();
+        Schema::create('customers', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();
+            $table->string('address')->nullable();
             $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('city')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -26,9 +31,6 @@ class AddCityAndPhoneInUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('city');
-            $table->dropColumn('phone');
-        });
+        Schema::dropIfExists('customers');
     }
-}
+};

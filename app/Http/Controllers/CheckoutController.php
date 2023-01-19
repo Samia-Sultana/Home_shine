@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Invoice;
+use App\Http\Middleware\Authenticate;
+use App\Models\Order;
 use App\Models\Orderdetail;
 use App\Models\Product;
 use App\Models\Catagory;
+use App\Models\Customer;
 use App\Models\Logo;
 use App\Models\Navbar;
 use Illuminate\Http\Request;
@@ -33,62 +35,47 @@ class CheckoutController extends Controller
             
         
     }
+
     public function checkout(Request $request){
-       
+
         $name = $request->input('name');
         $email = $request->input('email');
         $phone = $request->input('phone');
-        $company = $request->input('company');
         $address = $request->input('address');
         $city = $request->input('city');
         $zip = $request->input('zip');
-        $shipping = $request->input('location');
-        $note = $request->input('note');
-        
-
-        //validation
 
         //storing order in order invoice table
-        $invoice = new Invoice();
-        $invoice['name'] = $name;
-        $invoice['email'] = $email;
+        $invoice = new Order();
         $invoice['phone'] = $phone;
-        $invoice['address'] = $address;
-        $invoice['company'] = $company;
-        $invoice['city'] = $city;
-        $invoice['zip'] = $zip;
-        $invoice['status'] = "pending";
         $invoice['user_id'] = Auth::guard('web')->user()->id;
-        $invoice['note'] = $note;
+        $invoice['address'] = $address;
+        $invoice['city'] = $city;
+        $invoice['status'] = "pending";
         $invoice->save();
         
-        //stroring order info in order products table
-        $cart = $request->session()->get('cart');
-        foreach($cart as $item){
-            $orderDetail = new Orderdetail();
-            $orderDetail['orderinvoice_id'] = $invoice['id'];
-            $orderDetail['product_id'] = $item->id;
-            $orderDetail['sku'] = $item->sku;
-            $orderDetail['user_id'] = Auth::guard('web')->user()->id;
-            $orderDetail['quantity'] = $item->qty;
-            $orderDetail['singlePrice'] = $item->price;
-            $orderDetail['status'] = "pending";
-            
-
-            //dd($orderDetail['orderinvoice_id'],$orderDetail['product_id'],$orderDetail['user_id'],$orderDetail['quantity'],$orderDetail['singlePrice'],$orderDetail['status']);
-            $orderDetail->save();
-        }
-        //
-        $request->session()->forget('cart');
         
-
-
+        $cart = $request->session()->has('cart')? $request->session()->get('cart') : [];
+        if(count($cart) > 0){
+            foreach($cart as $item){
+                $orderDetail = new Orderdetail();
+                $orderDetail['order_id'] = $invoice['id'];
+                $orderDetail['barcode_no'] = $item->barcode;
+                $orderDetail['quantity'] = $item->qty;
+                $orderDetail['singlePrice'] = $item->price;
+               
+                $orderDetail->save();
+            }
+        }
+        
+        $request->session()->forget('cart');
         $notification = array(
-            'message' => 'Order successfull!!please watch order detail at your dashboard',
+            'message' => 'Order successfull!!',
             'alert-type' => 'success'
         );
 
         return redirect()->route('welcome')->with($notification);
         
     }
+
 }

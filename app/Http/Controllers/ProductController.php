@@ -8,7 +8,7 @@ use App\Models\Catagory;
 use App\Models\Product;
 use App\Models\Logo;
 use App\Models\Navbar;
-use App\Models\Stock;
+use App\Models\Purchase;
 use Image;
 use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Http\Request;
@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function index()
     {
         $catagories = Catagory::all();
-        $allProducts = Stock::paginate(16);
+        $allProducts = Purchase::paginate(16);
 
         return view('product', compact('catagories', 'allProducts'));
     }
@@ -63,12 +63,12 @@ class ProductController extends Controller
             //$thumbnailImage->move(public_path() . '/images', $thumbnailImageName);
 
             $insertedProduct = new Product;
-            $insertedProduct['productName'] = $request->productName;
+            $insertedProduct['name'] = $request->productName;
             $insertedProduct['price'] = $request->price;
             
             $insertedProduct['catagory'] = $request->get('catagory');
             
-            $insertedProduct['image1'] = $thumbnailImageName;
+            $insertedProduct['thumbnail'] = $thumbnailImageName;
             $insertedProduct['description'] = $request->description;
             $insertedProduct->save();
         }
@@ -104,14 +104,18 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id,$sku)
+    public function show(Request $request, $barcode)
     {
-        $images = Product::find($id)->productImage;
-        $productDetail = Product::find($id);
-        $stockDetail = Stock::where('product_id',$id)->where('sku',$sku)->get();
+        $stockDetail = Purchase::where('barcode',$barcode)->get();
+        $productDetail = Product::find($stockDetail[0]->product_id);
+        $images = Productimage::where('product_id',$stockDetail[0]->product_id)->get();
+       
+        
+        
         $catagories = Catagory::all();
         $logo = Logo::get()->last();
         $navigation = Navbar::all();
+
         return view('product_details', compact('productDetail', 'stockDetail', 'images', 'catagories', 'logo', 'navigation'));
     }
 
@@ -135,30 +139,26 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //$data = $request->all();
-        //dd($data);
-        $id = $request->input('id');
-        $sku = $request->get('sku');
+ 
+        $barcode = $request->get('barcode');
         $price = $request->get('price');
         $quantity = $request->get('quantity');
         $description = $request->get('editordata');
+        $product = Purchase::where('barcode', $barcode)->get();
+        $id = $product[0]->product_id;
         
-        
-        
-
         if($request->file('thumbnail') || $description){
             $product = Product::find($id);
            
             $product['description'] = $description;
             
 
-
         if ($request->file('thumbnail')) {
             $thumbnail = $request->file('thumbnail');
             $thumbnailImageName = date('YmdHi') . $thumbnail->getClientOriginalName();
             Image::make($thumbnail)->save('photos/'.$thumbnailImageName);
             $save_url = 'photos/'.$thumbnailImageName;
-            $product['image1'] = $thumbnailImageName;
+            $product['thumbnail'] = $thumbnailImageName;
 
         }
         $product->save();
@@ -185,11 +185,11 @@ class ProductController extends Controller
         }
 
         if($price || $quantity ) {
-            $stock = DB::table('stocks')->where('product_id',$id)->where('sku',$sku)->update([
-                'unitPrice'=> $price,
-                'totalStock' => $quantity,
-                'availableStock'=>0,
-                'status' =>null
+            $stock = DB::table('purchases')->where('barcode',$barcode)->update([
+                'selling_price'=> $price,
+                'total_qty' => $quantity,
+                'available_qty'=> $quantity,
+              
 
 
             ]);
@@ -211,11 +211,9 @@ class ProductController extends Controller
      */
     public function destroy(Request $request, Product $product)
     {
-        $id = $request->input('product_id');
-        $sku = $request->input('sku');
-        DB::table('products')->where('id',$id)->delete();
-        DB::table('productimages')->where('product_id',$id)->delete();
-        DB::table('stocks')->where('product_id',$id)->where('sku',$sku)->delete();
+        
+        $barcode = $request->input('barcode');
+        DB::table('purchases')->where('barcode',$barcode)->delete();
 
         $notification = array(
             'message' => 'product deleted successfully!',
@@ -227,10 +225,9 @@ class ProductController extends Controller
     }
 
     public function updateStatus(Request $request){
-        $id = $request->get('id');
-        $sku = $request->get('sku');
+        $id = $request->get('barcode');
         $status = $request->get('status');
-        DB::table('stocks')->where('product_id',$id)->where('sku',$sku)->update([
+        DB::table('purchases')->where('barcode',$barcode)->update([
             'status' => $status
         ]);
         return response()->json(['success'=>'Status Changed Successfully']); 

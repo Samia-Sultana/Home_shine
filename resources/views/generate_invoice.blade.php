@@ -89,7 +89,7 @@
                 <th width="50%" colspan="2" class="text-end company-data">
                     <span>Invoice Id: #{{$data['invoice']->id}}</span> <br>
                     <span>Date: {{$data['invoice']->created_at}}</span> <br>
-                    <span>Zip code : {{$data['invoice']->zip}}</span> <br>
+                 
                     <span>Address: #{{$data['invoice']->address . ',' .$data['invoice']->city}}</span> <br>
                 </th>
             </tr>
@@ -107,11 +107,7 @@
                 <td>Full Name:</td>
                 <td>{{$data['user']->name}}</td>
             </tr>
-            <tr>
-
-                <td>Email Id:</td>
-                <td>{{$data['invoice']->email}}</td>
-            </tr>
+           
             <tr>
                 <td>Ordered Date:</td>
                 <td>{{$data['invoice']->created_at}}</td>
@@ -143,8 +139,7 @@
                 </th>
             </tr>
             <tr class="bg-blue">
-                <th>ID</th>
-                <th>Sku</th>
+                <th>Code</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
@@ -154,8 +149,7 @@
             @foreach($data['orderDetail'] as $product)
            
             <tr>
-                <td width="10%">{{$product->product_id}}</td>
-                <td width="10%">{{$product->sku}}</td>
+                <td width="10%">{{$product->barcode_no}}</td>
                 <td width="10%">{{$product->singlePrice}}</td>
                 <td width="10%">{{$product->quantity}}</td>
                 <td width="15%" class="fw-bold">{{$product->singlePrice * $product->quantity}}</td>

@@ -9,6 +9,7 @@ use App\Cart;
 
 use App\Models\Logo;
 use App\Models\Navbar;
+use App\Models\Purchase;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -16,10 +17,7 @@ class CartController extends Controller
    
     
     
-    public function viewCart(Request $request){
-
-
-        
+    public function viewCart(Request $request){       
         $catagories = Catagory::all();
         $logo = Logo::get()->last();
         $navigation = Navbar::all();
@@ -44,25 +42,25 @@ class CartController extends Controller
         
        
     }
+
     public function addToCart(Request $request){
-        //$request->session()->forget('cart');
-        $productId = $request->input('productId');
-        $productSku = $request->input('productSku');
-        $quantity = $request->input('quantity');
-        $product = Product::find($productId);
+
+        $barcode = $request->input('barcode');
+        $product = Purchase::where('barcode', "=", $barcode)->get();
+        $productDetail = Product::find($product[0]->product_id);
         $cartProduct = (object) array(
-            'id' => $product->id,
-            'sku'=> $productSku,
-            'name' =>$product->productName,
-            'price' => $product->price,
-            'thumbnail' => $product->image1,
-            'qty' => $quantity
+            'name' =>$productDetail->name,
+            'thumbnail' => $productDetail->thumbnail,
+            'barcode' =>$product[0]->barcode,
+            'price' => $product[0]->selling_price,
+            'qty' => 1
         );
+        
         $oldCart  = $request->session()->has('cart')? $request->session()->get('cart'): null;
         if($oldCart){
             $inCart = false;
             foreach($oldCart as $item){
-                if($item->id == $productId && $item->sku == $productSku){
+                if($item->barcode == $barcode){
                     $item->qty++;
                     $inCart = true;
                     break;
@@ -72,29 +70,30 @@ class CartController extends Controller
                 $newCart = $oldCart;
             }
             else{
-
                 $newCart = $oldCart;
                 array_push($newCart,$cartProduct);
-
             }
         }
         else{
             $newCart = array($cartProduct);
         }
-       
         $request->session()->put('cart', $newCart);
-        $arr = array('success'=>'Product Added');
-        return response()->json($arr);
+      
+        $notification = array(
+            'message' => 'Product Added to cart!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('shoppingCart')->with($notification);
         
     }
+   
     public function updateCart(Request $request){
-        $productId = $request->input('productId');
-        $productSku = $request->input('productSku');
+        $barcode = $request->input('barcode');
+        $product = Purchase::where('barcode', "=", $barcode)->get();
         $quantity = $request->input('newQuantity');
-        $product = Product::find($productId);
         $cart  = $request->session()->get('cart');
         foreach($cart as $item){
-            if($item->id == $productId && $item->sku == $productSku){
+            if($item->barcode == $barcode){
                 $item->qty = $quantity ;
                 break;
             }
@@ -102,20 +101,17 @@ class CartController extends Controller
         $request->session()->put('cart', $cart);
         return response()->json(['cart'=>json_encode($cart)]);
         
-        
-
+    
     }
+
     public function removeCartProduct(Request $request){
-        $catagories = Catagory::all();
-        $logo = Logo::get()->last();
-        $navigation = Navbar::all();
-        $product_id = $request->input('product_id');
-        $productSku = $request->input('product_sku');
-       
+        
+        $barcode = $request->input('barcode');
+        $product = Purchase::where('barcode', "=", $barcode)->get();
         $cart = $request->session()->get('cart');
         foreach($cart as $key=>$item){
             
-            if($cart[$key]->id == $product_id && $cart[$key]->sku == $productSku){
+            if($cart[$key]->barcode == $barcode ){
                 unset($cart[$key]);
                 $newcart = array_values($cart);
                 $request->session()->put('cart', $newcart);
@@ -124,18 +120,25 @@ class CartController extends Controller
 
         //view cart
         $subTotal = 0;
-        $shipping = 150;
         $grandTotal = 0;
         if($request->session()->has('cart')){
             $cart = $request->session()->get('cart');
             foreach($cart as $item){
                 $subTotal = $subTotal + ($item->price * $item->qty);
             }
-            $grandTotal = $subTotal + $shipping;
-            return view('shopping_cart', compact('subTotal','shipping','grandTotal','catagories','logo','navigation'));
+            $grandTotal = $subTotal ;
+            $notification = array(
+                'message' => 'Product removed!',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('shoppingCart')->with($notification);
         }
         else{
-            return view('shopping_cart', compact('subTotal','shipping','grandTotal','catagories','logo','navigation'));
+            $notification = array(
+                'message' => 'Product could not removed!',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('shoppingCart')->with($notification);
         }
             
         

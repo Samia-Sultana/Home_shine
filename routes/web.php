@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
-Route::get('/product/details/{id}/{sku}',[ProductController::class,'show'])->name('showProduct');
+Route::get('/product/details/{barcode}',[ProductController::class,'show'])->name('showProduct');
 Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('addToCart');
 Route::post('/add-to-wishlist',[WishlistController::class,'addToWishlist'])->name('addToWishlist');
 Route::get('/view-cart',[CartController::class,'viewCart'])->name('shoppingCart');

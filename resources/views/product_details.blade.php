@@ -66,14 +66,14 @@
 
                             <div class="prInfoRow">
                                 <!----               <div class="product-stock"> <span class="instock ">In Stock</span> <span class="outstock hide">Unavailable</span> </div> ---->
-                                <div class="product-sku">SKU: <span class="variant-sku">{{$stockDetail[0]->sku}}</span></div>
+                                <div class="product-sku">Code: <span class="variant-sku">{{$stockDetail[0]->barcode}}</span></div>
                                 <!----          <div class="product-review"><a class="reviewLink" href="#tab2"><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star-o"></i><i class="font-13 fa fa-star-o"></i><span class="spr-badge-caption">6 reviews</span></a></div> ---->
                             </div>
                             <p class="product-single__price product-single__price-product-template">
                                 <!------<span class="visually-hidden">Regular price</span>
                                 <s id="ComparePrice-product-template"><span class="money">$600.00</span></s> ---------->
                                 <span class="product-price__price product-price__price-product-template product-price__sale product-price__sale--single">
-                                    <span id="ProductPrice-product-template"><span class="money">{{'BDT '. $stockDetail[0]->unitPrice}}</span></span>
+                                    <span id="ProductPrice-product-template"><span class="money">{{'BDT '. $stockDetail[0]->selling_price}}</span></span>
                                 </span>
                                 <!-----              <span class="discount-badge"> <span class="devider">|</span>&nbsp;
                                     <span>You Save</span>
@@ -87,11 +87,9 @@
 
                             </div> ----->
                             <div class="product-single__description rte">
-                                <?php 
-                                $text = App\Models\Product::find($productDetail->id);
-                                ?>
-                                {{$text['description']}}
-                              
+
+                                {{$productDetail->description}}
+
                             </div>
                             <!----------  <div id="quantity_message">Hurry! Only <span class="items">4</span> left in stock.</div>
                                     <form method="post" action="http://annimexweb.com/cart/add" id="product_form_10508262282" accept-charset="UTF-8" class="product-form product-form-product-template hidedropdown" enctype="multipart/form-data">
@@ -147,14 +145,14 @@
                                                 </div>
                                             </div> ---------->
                             <div class="product-form__item--submit">
-                                <form action="">
-
-                                    <input type="hidden" class="pro-id" value="{{$productDetail->id}}" />
-                                    <input type="hidden" class="pro-sku" value="{{$stockDetail[0]->sku}}" />
-                                    <button type="button" name="add" class="btn product-form__cart-submit btn-submit">
+                                <form action="{{route('addToCart')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="barcode" id="barcode" value="{{$stockDetail[0]->barcode}}">
+                                    <button type="submit" name="add" class="btn product-form__cart-submit btn-submit">
                                         <span>Add to cart</span>
                                     </button>
                                 </form>
+                               
                             </div>
                             <!----------
                                             <div class="shopify-payment-button" data-shopify="payment-button">
@@ -167,8 +165,8 @@
                                 <div class="display-table-cell medium-up--one-third">
                                     <div class="wishlist-btn">
                                         <form action="">
-                                            <input type="hidden" class="pro-id" value="{{$productDetail->id}}" />
-                                            <input type="hidden" class="pro-sku" value="{{$stockDetail[0]->sku}}" />
+                                           
+                                            <input type="hidden" class="pro-sku" value="{{$stockDetail[0]->barcode}}" />
                                             <button type="button" name="add" class="btn wishlist add-to-wishlist">
                                             <i class="icon anm anm-heart-l" aria-hidden="true"></i> Add to Wishlist
                                             </button>
@@ -977,37 +975,7 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    $(".btn-submit").click(function(e) {
-        e.preventDefault();
 
-        var $button = $(this);
-        var productId = $button.parent().find("input:even").val();
-        var productSku = $button.parent().find("input:odd").val();
-        console.log(productId, productSku);
-        var quantity = 1;
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('addToCart') }}",
-            data: {
-                productId: productId,
-                productSku: productSku,
-                quantity: quantity
-            },
-            success: function(data) {
-                toastr.success(data.success);
-            }
-        });
-
-    });
-</script>
 
 
 

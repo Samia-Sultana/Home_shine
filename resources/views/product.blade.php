@@ -91,8 +91,8 @@
                                         <thead>
                                             <tr>
                                                
-                                                <th class="pro-id">Id</th>
-                                                <th class="pro-sku">SKU</th>
+                                  
+                                                <th class="pro-sku">Code</th>
                                                 <th class="pro-price">Price</th>
                                                 <th class="pro-available">Available</th>
                                                 <th class="pro-remove">Delete</th>
@@ -104,24 +104,23 @@
                                             @foreach($allProducts as $product)
                                             <tr>
 
-                                                <td>{{$product->product_id}}</td>
-                                                <td>{{$product->sku}}</td>
-                                                <td>{{$product->unitPrice}}</td>
-                                                <td>{{$product->totalStock}}</td>
+                                                <td>{{$product->barcode}}</td>
+                                                <td>{{$product->selling_price}}</td>
+                                                <td>{{$product->total_qty}}</td>
                                                 <td>
                                                     <form action="{{route('deleteProduct')}}" method="post">
                                                         @csrf
-                                                        <input type="hidden" value="{{$product->product_id}}" name="product_id">
-                                                        <input type="hidden" value="{{$product->sku}}" name="sku">
+                                                      
+                                                        <input type="hidden" value="{{$product->barcode}}" name="barcode">
                                                         <button type="submit" class="btn btn-danger btn-delete-product">Delete</button>
                                                     </form>
                                                 </td>
                                                 <td>
                                                     <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="{{'#update_product_'.$product->product_id}}">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="{{'#update_product_'.$product->barcode}}">
                                                         Update
                                                     </button>
-                                                    <div class="modal fade" id="{{'update_product_' . $product->product_id}}" tabindex="-1" role="dialog" aria-labelledby="update_product_lebel" aria-hidden="true">
+                                                    <div class="modal fade" id="{{'update_product_' . $product->barcode}}" tabindex="-1" role="dialog" aria-labelledby="update_product_lebel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -134,12 +133,12 @@
                                                                     <form action="" class="d-flex" enctype="multipart/form-data">
                                                                         @csrf
                                                                         <div class="p-1">
-                                                                            <input type="hidden" id="update_productId" name="update_productId" value="{{$product->product_id}}">
+                                                                          
 
-                                                                            <input type="hidden" id="update_sku" name="update_sku" value="{{$product->sku}}">
+                                                                            <input type="hidden" id="barcode" name="barcode" value="{{$product->barcode}}">
 
                                                                             <label for="update_price"> Unit Price</label><br>
-                                                                            <input type="text" id="update_price" name="update_price" value="{{$product->unitPrice}}"><br><br>
+                                                                            <input type="text" id="update_price" name="update_price" value="{{$product->selling_price}}"><br><br>
 
                                                                             <label for="update_thumbnail">Thumbnail Image</label><br>
 
@@ -149,7 +148,7 @@
                                                                             <input type="file" id="update_image" name="update_images[]" multiple="multiple" /><br><br>
 
                                                                             <label for="update_quantity"> Quantity</label><br>
-                                                                            <input type="text" id="update_quantity" name="update_quantity" value="{{$product->totalStock}}"><br><br>
+                                                                            <input type="text" id="update_quantity" name="update_quantity" value="{{$product->total_qty}}"><br><br>
 
 
 
@@ -267,26 +266,26 @@
     $(".btn-update-product").on("click", function() {
     
     var $button = $(this);
-    var id = $button.parent().prev().find("input#update_productId").val();
-    var sku =$button.parent().prev().find("input#update_sku").val();
+   
+    var barcode =$button.parent().prev().find("input#barcode").val();
     var price = $button.parent().prev().find("input#update_price").val();
     var quantity =$button.parent().prev().find("input#update_quantity").val() ;
     var editordata = $button.parent().prev().find("textarea#update_description").val();
     var thumbnail = $button.parent().prev().find("input#update_thumbnail")[0].files;
     var multiImage = $button.parent().prev().find("input#update_image")[0].files;
     var totalImage = $button.parent().prev().find("input#update_image")[0].files.length;
-console.log(editordata);
+   
     var fd = new FormData();
-    fd.append('id',id);
+    fd.append('barcode',barcode);
     fd.append('price',price);
     fd.append('quantity',quantity);
-    fd.append('sku',sku);
+    
     fd.append('editordata',editordata);
     fd.append('thumbnail',thumbnail[0]);
     fd.append('totalImage', totalImage);
 
     let images = $button.parent().prev().find("input#update_image")[0].files;
-    console.log(images);
+ 
     for (let i = 0; i < totalImage; i++) {
         console.log(images[i]);
         fd.append('images' + i, images[i]);

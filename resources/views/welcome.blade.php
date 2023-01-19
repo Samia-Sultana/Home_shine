@@ -48,17 +48,17 @@
 
                 @foreach($allProduct as $item)
                 @php
-                $stocksOfProduct = App\Models\Stock::where('product_id',$item->id)->get();
+                $stocksOfProduct = App\Models\Purchase::where('product_id',$item->id)->get();
                 @endphp
                 @foreach($stocksOfProduct as $stock)
-                @if($stock->status == "enable")
+                
                 <div class="col-12 item">
                     <!-- start product image -->
                     <div class="product-image">
                         <!-- start product image -->
-                        <a href="{{'/product/details/' . $item->id. '/' . $stock->sku}}" class="grid-view-item__link">
+                        <a href="{{'/product/details/' . $stock->barcode}}" class="grid-view-item__link">
                             <!-- image -->
-                            <img src="{{url('photos/'.$item->image1)}}" alt="image" title="product">
+                            <img src="{{url('photos/'.$item->thumbnail)}}" alt="image" title="product">
                             <!-- End image -->
                         </a>
                         <!-- end product image -->
@@ -66,11 +66,7 @@
                         <div class="variants add">
 
                             <form action="">
-
-                                <input type="hidden" class="pro-id" value="{{$item->id}}" />
-                                <input type="hidden" class="pro-sku" value="{{$stock->sku}}" />
-
-
+                                <input type="hidden" class="pro-sku" value="{{$stock->barcode}}" />
                                 <button class="btn btn-addto-cart cart-btn-alert btn-submit" type="button" tabindex="0">Add To Cart</button>
 
                             </form>
@@ -82,18 +78,19 @@
                     <div class="product-details text-center">
                         <!-- product name -->
                         <div class="product-name">
-                            <a href="{{'/product/details/' . $item->id. '/' . $stock->sku}}">{{$item->productName}}</a>
+                            <a href="{{'/product/details/' . $stock->barcode}}">{{$item->name}}</a>
                         </div>
                         <!-- End product name -->
                         <!-- product price -->
                         <div class="product-price">
-                            <span class="price">{{"BDT ". $stock->unitPrice}}</span>
+                        <span class="price">{{"Code: ". $stock->barcode}}</span>
+                            <span class="price">{{"BDT ". $stock->selling_price}}</span>
                         </div>
                         <!-- End product price -->
                     </div>
                     <!-- End product details -->
                 </div>
-                @endif
+              
                 @endforeach
                 @endforeach
 

@@ -19,6 +19,8 @@ class Blog extends Migration
             $table->string('image');
             
             $table->string('title');
+            $table->text('description');
+            $table->string('status')->nullable();
            
             $table->timestamps();
         });

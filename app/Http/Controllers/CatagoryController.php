@@ -68,7 +68,7 @@ class CatagoryController extends Controller
     public function show(Catagory $catagory, $id)
     {
         $catagory = Catagory::find($id);
-        $catagoryProducts = Product::where('catagory', $catagory->catagoryName)->paginate(12);
+        $catagoryProducts = Product::where('catagory', $catagory->id)->paginate(12);
         $catagoryName =  $catagory->catagoryName;
         $catagories = Catagory::all();
         $logo = Logo::get()->last();
