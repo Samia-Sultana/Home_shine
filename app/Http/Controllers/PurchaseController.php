@@ -106,6 +106,7 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, Purchase $purchase)
     {
+        
 
         $purchase = Purchase::find($request->purchaseId);
         $purchase->update([

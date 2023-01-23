@@ -83,6 +83,7 @@ class CartController extends Controller
             'message' => 'Product Added to cart!',
             'alert-type' => 'success'
         );
+        
         return redirect()->route('shoppingCart')->with($notification);
         
     }

@@ -1,4 +1,5 @@
-<x-admin-layout>
+@extends('masterAdmin')
+@section('productList')
     <div class="page-wrapper">
         <div class="content">
             <div class="page-header">
@@ -7,7 +8,7 @@
                     <h6>Manage your products</h6>
                 </div>
                 <div class="page-btn">
-                    <a href="{{route('addProductPage')}}" class="btn btn-added"><img src="{{asset('assets/img/icons/plus.svg')}}" alt="img" class="me-1">Add New Product</a>
+                    <a href="{{route('addProductPage')}}" class="btn btn-added"><img src="{{asset('adminFrontend/assets/img/icons/plus.svg')}}" alt="img" class="me-1">Add New Product</a>
                 </div>
             </div>
 
@@ -72,7 +73,7 @@
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="{{'#update_product_'.$product->id}}">
-                                            <img src="{{asset('assets/img/icons/edit.svg')}}" alt="img">
+                                            <img src="{{asset('adminFrontend/assets/img/icons/edit.svg')}}" alt="img">
                                         </button>
                                         <div class="modal fade" id="{{'update_product_' . $product->id}}" tabindex="-1" role="dialog" aria-labelledby="update_product_lebel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -110,7 +111,7 @@
                                             @csrf
                                             <input type="hidden" value="{{$product->id}}" name="product_id">
                                             <button type="submit" class="btn btn-danger btn-delete-product">
-                                                <img src="{{asset('assets/img/icons/delete.svg')}}" alt="img">
+                                                <img src="{{asset('adminFrontend/assets/img/icons/delete.svg')}}" alt="img">
                                             </button>
                                         </form>
 
@@ -157,4 +158,4 @@
         }
         @endif
     </script>
-</x-admin-layout>
+@endsection

@@ -1,4 +1,5 @@
-<x-admin-layout>
+@extends('masterAdmin')
+@section('purchaseList')
 
     <div class="page-wrapper">
         <div class="content">
@@ -9,7 +10,7 @@
                 </div>
                 <div class="page-btn">
                     <a href="{{route('addPurchasePage')}}" class="btn btn-added">
-                        <img src="{{asset('assets/img/icons/plus.svg')}}" alt="img">Add New Purchases
+                        <img src="{{asset('adminFrontend/assets/img/icons/plus.svg')}}" alt="img">Add New Purchases
                     </a>
                 </div>
             </div>
@@ -20,12 +21,12 @@
                         <div class="search-set">
                             <div class="search-path">
                                 <a class="btn btn-filter" id="filter_search">
-                                    <img src="{{asset('assets/img/icons/filter.svg')}}" alt="img">
-                                    <span><img src="{{asset('assets/img/icons/closes.svg')}}" alt="img"></span>
+                                    <img src="{{asset('adminFrontend/assets/img/icons/filter.svg')}}" alt="img">
+                                    <span><img src="{{asset('adminFrontend/assets/img/icons/closes.svg')}}" alt="img"></span>
                                 </a>
                             </div>
                             <div class="search-input">
-                                <a class="btn btn-searchset"><img src="{{asset('assets/img/icons/search-white.svg')}}" alt="img"></a>
+                                <a class="btn btn-searchset"><img src="{{asset('adminFrontend/assets/img/icons/search-white.svg')}}" alt="img"></a>
                             </div>
                         </div>
 
@@ -74,6 +75,7 @@
                                         <?php
 
                                         $product = App\Models\Product::find($purchase->product_id);
+                                       
                                         ?>
                                         {{$product->name}}
                                     </td>
@@ -82,6 +84,7 @@
                                         $supplier = App\Models\Supplier::find($purchase->supplier_id);
                                         ?>
                                         {{$supplier->name}}
+                                        
                                     </td>
                                     <td>{{$purchase->purchase_date}}</td>
                                     <td>{{$purchase->expiry_date}}</td>
@@ -96,7 +99,7 @@
 
                                     <td>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="{{'#update_purchase_'.$purchase->id}}">
-                                            <img src="{{asset('assets/img/icons/edit.svg')}}" alt="img">
+                                            <img src="{{asset('adminFrontend/assets/img/icons/edit.svg')}}" alt="img">
                                         </button>
                                         <div class="modal fade" id="{{'update_purchase_' . $purchase->id}}" tabindex="-1" role="dialog" aria-labelledby="update_product_lebel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -127,7 +130,7 @@
                                                                     <?php
                                                                     $supplierDetail = App\Models\Supplier::find($purchase->supplier_id);
                                                                     ?>
-                                                                    <option value="{{$purchase->supplier_id}}">{{$supplierDetail->name}}</option>
+                                                                    <option value="{{$purchase->supplier_id}}"{{$supplierDetail->name}}></option>
                                                                     @if($suppliers)
                                                                     @foreach($suppliers as $supplier)
                                                                     <option value="{{$supplier->id}}">{{$supplier->name}}</option>
@@ -163,7 +166,7 @@
                                             @csrf
                                             <input type="hidden" value="{{$purchase->id}}" name="purchase_id">
                                             <button type="submit" class="btn btn-danger btn-delete-supplier">
-                                                <img src="{{asset('assets/img/icons/delete.svg')}}" alt="img">
+                                                <img src="{{asset('adminFrontend/assets/img/icons/delete.svg')}}" alt="img">
                                             </button>
                                         </form>
 
@@ -183,11 +186,11 @@
     </div>
 
 
-    <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{asset('assets/js/feather.min.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/feather.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -195,14 +198,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js02"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
 
-    <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/bootstrap.bundle.min.js')}}"></script>
 
-    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/plugins/select2/js/select2.min.js')}}"></script>
 
-    <script src="{{asset('assets/plugins/sweetalert/sweetalert2.all.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/sweetalert/sweetalerts.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/plugins/sweetalert/sweetalert2.all.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/plugins/sweetalert/sweetalerts.min.js')}}"></script>
 
-    <script src="{{asset('assets/js/script.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/script.js')}}"></script>
 
 
       <!-------modal cdn -------------->
@@ -236,4 +239,4 @@
 
 
 
-</x-admin-layout>
+    @endsection

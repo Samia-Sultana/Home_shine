@@ -1,4 +1,5 @@
-<x-admin-layout>
+@extends('masterAdmin')
+@section('createOrder')
     <div class="page-wrapper ms-0">
         <div class="content">
             <div class="row">
@@ -23,7 +24,7 @@
                                             <img src="{{url('photos/'.$productDetail->thumbnail)}}" alt="img" style="height:150px;width:200px;">
                                             <h6>Qty: {{$item->available_qty}}</h6>
                                             <div class="check-product">
-                                                <form action="{{route('addToCart')}}" method="POST">
+                                                <form action="{{route('addToOrder')}}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="barcode" id="barcode" value="{{$item->barcode}}">
                                                     <button type="submit" class="btn btn-primary">add</button>
@@ -172,7 +173,7 @@
                                             </div>
                                             <div class="productcontet">
                                                 <h4>{{$productInfo[0]->name}}
-                                                    <a href="javascript:void(0);" class="ms-2" data-bs-toggle="modal" data-bs-target="#edit"><img src="{{asset('assets/img/icons/edit-5.svg')}}" alt="img"></a>
+                                                    <a href="javascript:void(0);" class="ms-2" data-bs-toggle="modal" data-bs-target="#edit"><img src="{{asset('adminFrontend/assets/img/icons/edit-5.svg')}}" alt="img"></a>
                                                 </h4>
                                                 <div class="productlinkset">
                                                     <h5>{{$productInfo[0]->sku}}</h5>
@@ -202,10 +203,10 @@
                                     </li>
                                     <li>{{$purchaseRow[0]->selling_price }}</li>
                                     <li>
-                                        <form action="{{route('removeCartProduct')}}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{route('removeOrderCartProduct')}}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <input type="hidden" name="barcode" value="{{$product->barcode}}">
-                                            <button type="submit" class="remove"><img src="{{asset('assets/img/icons/delete-2.svg')}}" alt="img"></button>
+                                            <button type="submit" class="remove"><img src="{{asset('adminFrontend/assets/img/icons/delete-2.svg')}}" alt="img"></button>
                                         </form>
                                     </li>
                                 </ul>
@@ -225,7 +226,7 @@
 
                                 </ul>
                             </div>
-                            <form method="POST" action="{{route('checkout')}}" class="d-flex" enctype="multipart/form-data">
+                            <form method="POST" action="{{route('checkoutOrder')}}" class="d-flex" enctype="multipart/form-data">
                                                         @csrf
                             <div class="col-lg-12">
                                 <div class="select-split ">
@@ -301,26 +302,26 @@
             </div>
         </div>
         <!--End Body Content-->
-        <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-        <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('adminFrontend/assets/js/jquery-3.6.0.min.js')}}"></script>
+        <script src="{{asset('adminFrontend/assets/js/bootstrap.bundle.min.js')}}"></script>
 
-        <script src="{{asset('assets/js/feather.min.js')}}"></script>
+        <script src="{{asset('adminFrontend/assets/js/feather.min.js')}}"></script>
 
-        <script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
+        <script src="{{asset('adminFrontend/assets/js/jquery.slimscroll.min.js')}}"></script>
 
 
 
-        <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
-        <script src="{{asset('assets/js/dataTables.bootstrap4.min.js')}}"></script>
+        <script src="{{asset('adminFrontend/assets/js/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('adminFrontend/assets/js/dataTables.bootstrap4.min.js')}}"></script>
 
-        <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+        <script src="{{asset('adminFrontend/assets/plugins/select2/js/select2.min.js')}}"></script>
 
-        <script src="{{asset('assets/plugins/owlcarousel/owl.carousel.min.js')}}"></script>
+        <script src="{{asset('adminFrontend/assets/plugins/owlcarousel/owl.carousel.min.js')}}"></script>
 
-        <script src="{{asset('assets/plugins/sweetalert/sweetalert2.all.min.js')}}"></script>
-        <script src="{{asset('assets/plugins/sweetalert/sweetalerts.min.js')}}"></script>
+        <script src="{{asset('adminFrontend/assets/plugins/sweetalert/sweetalert2.all.min.js')}}"></script>
+        <script src="{{asset('adminFrontend/assets/plugins/sweetalert/sweetalerts.min.js')}}"></script>
 
-        <script src="{{asset('assets/js/script.js')}}"></script>
+        <script src="{{asset('adminFrontend/assets/js/script.js')}}"></script>
 
         <!-------modal cdn -------------->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -384,7 +385,7 @@ $.ajaxSetup({
 
 $.ajax({
     type:'POST',
-    url:"{{ route('updateShoppingCart') }}",
+    url:"{{ route('updateOrderCart') }}",
     data:{barcode:productBarcode, newQuantity:newQuantity},
     success:function(data){
         var productPrice = $button.parents(".pro-quantity").prev().text();
@@ -409,4 +410,5 @@ $.ajax({
 });
 </script>
 
-</x-admin-layout>
+
+@endsection

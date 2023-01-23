@@ -1,4 +1,5 @@
-<x-admin-layout>
+@extends('masterAdmin')
+@section('createProduct')
 
 <div class="page-wrapper">
             <div class="content">
@@ -106,4 +107,4 @@
         @endif
     </script>
 
-</x-admin-layout>
+@endsection

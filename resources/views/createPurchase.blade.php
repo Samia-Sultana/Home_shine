@@ -49,9 +49,7 @@
                                     <label>Purchase Date </label>
                                     <div class="input-groupicon">
                                         <input type="date" placeholder="DD-MM-YYYY" class="datetimepicker" id="purchaseDate" name="purchaseDate">
-                                        <div class="addonset">
-                                            <img src="assets/img/icons/calendars.svg" alt="img">
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -60,9 +58,7 @@
                                     <label>Expiry Date </label>
                                     <div class="input-groupicon">
                                         <input type="date" placeholder="DD-MM-YYYY" class="datetimepicker" id="expiryDate" name="expiryDate">
-                                        <div class="addonset">
-                                            <img src="assets/img/icons/calendars.svg" alt="img">
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>

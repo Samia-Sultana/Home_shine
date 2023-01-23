@@ -1,4 +1,5 @@
-<x-admin-layout>
+@extends('masterAdmin')
+@section('purchaseReport')
     
 <div class="page-wrapper">
             <div class="content">
@@ -15,12 +16,12 @@
                             <div class="search-set">
                                 <div class="search-path">
                                     <a class="btn btn-filter" id="filter_search">
-                                        <img src="{{asset('assets/img/icons/filter.svg')}}" alt="img">
-                                        <span><img src="{{asset('assets/img/icons/closes.svg')}}" alt="img"></span>
+                                        <img src="{{asset('adminFrontend/assets/img/icons/filter.svg')}}" alt="img">
+                                        <span><img src="{{asset('adminFrontend/assets/img/icons/closes.svg')}}" alt="img"></span>
                                     </a>
                                 </div>
                                 <div class="search-input">
-                                    <a class="btn btn-searchset"><img src="{{asset('assets/img/icons/search-white.svg')}}"
+                                    <a class="btn btn-searchset"><img src="{{asset('adminFrontend/assets/img/icons/search-white.svg')}}"
                                             alt="img"></a>
                                 </div>
                             </div>
@@ -28,15 +29,15 @@
                                 <ul>
                                     <li>
                                         <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img
-                                                src="{{asset('assets/img/icons/pdf.svg')}}" alt="img"></a>
+                                                src="{{asset('adminFrontend/assets/img/icons/pdf.svg')}}" alt="img"></a>
                                     </li>
                                     <li>
                                         <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img
-                                                src="{{asset('assets/img/icons/excel.svg')}}" alt="img"></a>
+                                                src="{{asset('adminFrontend/assets/img/icons/excel.svg')}}" alt="img"></a>
                                     </li>
                                     <li>
                                         <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img
-                                                src="{{asset('assets/img/icons/printer.svg')}}" alt="img"></a>
+                                                src="{{asset('adminFrontend/assets/img/icons/printer.svg')}}" alt="img"></a>
                                     </li>
                                 </ul>
                             </div>
@@ -50,7 +51,7 @@
                                             <div class="input-groupicon">
                                                 <input type="text" placeholder="From Date" class="datetimepicker">
                                                 <div class="addonset">
-                                                    <img src="{{asset('assets/img/icons/calendars.svg')}}" alt="img">
+                                                    <img src="{{asset('adminFrontend/assets/img/icons/calendars.svg')}}" alt="img">
                                                 </div>
                                             </div>
                                         </div>
@@ -60,7 +61,7 @@
                                             <div class="input-groupicon">
                                                 <input type="text" placeholder="To Date" class="datetimepicker">
                                                 <div class="addonset">
-                                                    <img src="{{asset('assets/img/icons/calendars.svg')}}" alt="img">
+                                                    <img src="{{asset('adminFrontend/assets/img/icons/calendars.svg')}}" alt="img">
                                                 </div>
                                             </div>
                                         </div>
@@ -76,7 +77,7 @@
                                     <div class="col-lg-1 col-sm-6 col-12 ms-auto">
                                         <div class="form-group">
                                             <a class="btn btn-filters ms-auto"><img
-                                                    src="{{asset('assets/img/icons/search-whites.svg')}}" alt="img"></a>
+                                                    src="{{asset('adminFrontend/assets/img/icons/search-whites.svg')}}" alt="img"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -169,23 +170,23 @@
 
 
 
-        <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{asset('assets/js/feather.min.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/js/dataTables.bootstrap4.min.js')}}"></script>
+        <script src="{{asset('adminFrontend/assets/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/feather.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js02"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
-    <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('assets/js/moment.min.js')}}"></script>
-    <script src="{{asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/sweetalert/sweetalert2.all.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/sweetalert/sweetalerts.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/moment.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/bootstrap-datetimepicker.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/plugins/select2/js/select2.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/plugins/sweetalert/sweetalert2.all.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/plugins/sweetalert/sweetalerts.min.js')}}"></script>
 
-    <script src="{{asset('assets/js/script.js')}}"></script>
-</x-admin-layout>
+    <script src="{{asset('adminFrontend/assets/js/script.js')}}"></script>
+    @endsection

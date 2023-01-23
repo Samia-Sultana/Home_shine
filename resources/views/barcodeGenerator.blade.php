@@ -1,4 +1,5 @@
-<x-admin-layout>
+@extends('masterAdmin')
+@section('generateBarcode')
 
 <div class="page-wrapper">
             <div class="content">
@@ -42,4 +43,4 @@
 
 
 
-        </x-admin-layout>
+        @endsection

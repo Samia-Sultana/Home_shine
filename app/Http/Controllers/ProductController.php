@@ -29,10 +29,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $catagories = Catagory::all();
-        $allProducts = Purchase::paginate(16);
+       
 
-        return view('product', compact('catagories', 'allProducts'));
+        return view('createProduct');
     }
 
     /**
@@ -52,50 +51,28 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
     {
-
+        $input = $request->all();
         if ($request->file('thumbnail')) {
             $thumbnailImage = $request->file('thumbnail');
             $thumbnailImageName = date('YmdHi') . $thumbnailImage->getClientOriginalName();
             Image::make($thumbnailImage)->save('photos/'.$thumbnailImageName);
             $save_url = 'photos/'.$thumbnailImageName;
-            //$thumbnailImage->move(public_path() . '/images', $thumbnailImageName);
-
-            $insertedProduct = new Product;
-            $insertedProduct['name'] = $request->productName;
-            $insertedProduct['price'] = $request->price;
-            
-            $insertedProduct['catagory'] = $request->get('catagory');
-            
-            $insertedProduct['thumbnail'] = $thumbnailImageName;
-            $insertedProduct['description'] = $request->description;
-            $insertedProduct->save();
         }
+        Product::create([
+            'name' => $input['name'],
+            'sku' => $input['sku'],
+            'thumbnail' => $thumbnailImageName,
+            'description' => $input['description'],
+           
+        ]);
 
 
-        if ($request->file('images')) {
-            $imageArray = [];
-            foreach (($request->file('images')) as $image) {
-                $file = $image;
-                $filename = date('YmdHi') . $file->getClientOriginalName();
-                Image::make($file)->save('photos/'.$filename);
-                $save_url = 'photos/'.$filename;
-                $imageArray = $filename;
-                Productimage::create([
-                    'product_id' => $insertedProduct['id'],
-                    'image' => $imageArray
-                ]);
-            }
-        }
         $notification = array(
-            'message' => 'New product added!',
+            'message' => 'New Product added!',
             'alert-type' => 'success'
         );
-
-        return redirect()->route('product')->with($notification);
-
-        
+        return redirect()->route('addProductPage')->with($notification);
     }
 
     /**
@@ -119,6 +96,12 @@ class ProductController extends Controller
         return view('product_details', compact('productDetail', 'stockDetail', 'images', 'catagories', 'logo', 'navigation'));
     }
 
+    public function showProductList(Product $Product)
+    {
+        $products = Product::all();
+        return view('productList', compact('products'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -139,22 +122,22 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
- 
-        $barcode = $request->get('barcode');
+        
+        $id =  $request->get('update_productId');
+        $sku = $request->get('update_sku');
         $price = $request->get('price');
         $quantity = $request->get('quantity');
-        $description = $request->get('editordata');
-        $product = Purchase::where('barcode', $barcode)->get();
-        $id = $product[0]->product_id;
+        $description = $request->get('update_description');
         
-        if($request->file('thumbnail') || $description){
+        
+        if($request->file('update_thumbnail') || $description){
             $product = Product::find($id);
            
             $product['description'] = $description;
             
 
-        if ($request->file('thumbnail')) {
-            $thumbnail = $request->file('thumbnail');
+        if ($request->file('update_thumbnail')) {
+            $thumbnail = $request->file('update_thumbnail');
             $thumbnailImageName = date('YmdHi') . $thumbnail->getClientOriginalName();
             Image::make($thumbnail)->save('photos/'.$thumbnailImageName);
             $save_url = 'photos/'.$thumbnailImageName;
@@ -184,24 +167,19 @@ class ProductController extends Controller
             }
         }
 
-        if($price || $quantity ) {
-            $stock = DB::table('purchases')->where('barcode',$barcode)->update([
-                'selling_price'=> $price,
-                'total_qty' => $quantity,
-                'available_qty'=> $quantity,
-              
-
-
-            ]);
-            
-
-        }
-        return response()->json(['success'=>'Product updated Successfully']); 
+        
+        $notification = array(
+            'message' => 'Product Updated!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('productList')->with($notification);
 
        
         
         
     }
+
+    
 
     /**
      * Remove the specified resource from storage.
@@ -212,26 +190,19 @@ class ProductController extends Controller
     public function destroy(Request $request, Product $product)
     {
         
-        $barcode = $request->input('barcode');
-        DB::table('purchases')->where('barcode',$barcode)->delete();
-
+        $id = $request->product_id;
+        Product::find($id)->delete();
+        
+        
         $notification = array(
-            'message' => 'product deleted successfully!',
+            'message' => 'Product Deleted!',
             'alert-type' => 'success'
         );
-
-        return redirect()->route('product')->with($notification);
+        return redirect()->route('addProductPage')->with($notification);
         
     }
 
-    public function updateStatus(Request $request){
-        $id = $request->get('barcode');
-        $status = $request->get('status');
-        DB::table('purchases')->where('barcode',$barcode)->update([
-            'status' => $status
-        ]);
-        return response()->json(['success'=>'Status Changed Successfully']); 
-    }
+    
     // Show all products
     public function showAllProducts()
     {
