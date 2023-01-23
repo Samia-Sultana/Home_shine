@@ -1,186 +1,213 @@
-                
-
-<body class="nk-body bg-lighter npc-general has-sidebar ">
-    <div class="nk-app-root">
-        <!-- main @s -->
-        <div class="nk-main ">
-            <!-- sidebar @s -->
-            <div class="nk-sidebar nk-sidebar-fixed is-dark " data-content="sidebarMenu">
-                <div class="nk-sidebar-element nk-sidebar-head">
-                    <div class="nk-menu-trigger">
-                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
-                        <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                <body class="font-sans antialiased">
+                    <div id="global-loader">
+                        <div class="whirly-loader"> </div>
                     </div>
-                    <div class="nk-sidebar-brand">
-                        <a href="{{route('admin.dashboard')}}" class="logo-link nk-sidebar-logo">
-                            <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                            <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
-                        </a>
-                    </div>
-                </div><!-- .nk-sidebar-element -->
-                <div class="nk-sidebar-element nk-sidebar-body">
-                    <div class="nk-sidebar-content">
-                        <div class="nk-sidebar-menu" data-simplebar>
-                            <ul class="nk-menu">
-                              
-                                <li class="nk-menu-item">
-                                    <a href="{{ route('logo') }}" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
-                                        <span class="nk-menu-text">Logo</span>
-                                    </a>
-                                </li><!-- .nk-menu-item -->
-                                <li class="nk-menu-item">
-                                    <a href="{{ route('navbar') }}" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
-                                        <span class="nk-menu-text">Navbar</span>
-                                    </a>
-                                </li><!-- .nk-menu-item -->
 
-                                <li class="nk-menu-item">
-                                    <a href="{{ route('slider') }}" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-building"></em></span>
-                                        <span class="nk-menu-text">Slider</span><span class="nk-menu-badge">new</span>
-                                    </a>
-                                </li><!-- .nk-menu-item -->
-                                <li class="nk-menu-item">
-                                    <a href="{{ route('socialMedia') }}" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
-                                        <span class="nk-menu-text">Social Media</span>
-                                    </a>
-                                </li><!-- .nk-menu-item -->
-                                
+                    <div class="main-wrapper">
 
-                             
-                                
-                                <!----<li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">Products</span>
-                                    </a>---->
-                                   
-                                        <li class="nk-menu-item">
-                                            <a href="{{ route('catagory') }}" class="nk-menu-link"><span class="nk-menu-text">Add Category</span></a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="{{ route('product') }}" class="nk-menu-link"><span class="nk-menu-text">Add Product</span></a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="{{ route('stock') }}" class="nk-menu-link"><span class="nk-menu-text">Update Stock</span></a>
-                                        </li>
-                                  
-                 <!---               </li> -->
+                        <div class="header">
 
-                                <li class="nk-menu-item">
-                                    <a href="{{ route('order') }}" class="nk-menu-link ">
-                                        <span class="nk-menu-text">Orders</span>
-                                    </a>
-                                </li>    
-                                
-                               <!--- <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">Blog</span>
-                                    </a> ---->
-                                  
-                                        <li class="nk-menu-item">
-                                            <a href="{{ route('blog') }}" class="nk-menu-link"><span class="nk-menu-text">Blog</span></a>
-                                        </li>
-                                      
-                                 <!-- .nk-menu-sub -->
-                              <!---  </li> -->
-                              <li class="nk-menu-item">
-                              <a href="{{ route('viewContact') }}" class="nk-menu-link"><span class="nk-menu-text">Contact us message</span></a>
-                              </li>
-                              <li class="nk-menu-item">
-                              <a href="{{ route('viewFaq') }}" class="nk-menu-link"><span class="nk-menu-text">Question and Answer</span></a>
-                              </li>
-                              <li class="nk-menu-item">
-                              <a href="{{ route('photos') }}" class="nk-menu-link"><span class="nk-menu-text">Gallery</span></a>
-                              </li>
-                              
-
-
-                            </ul><!-- .nk-menu -->
-                        </div><!-- .nk-sidebar-menu -->
-                    </div><!-- .nk-sidebar-content -->
-                </div><!-- .nk-sidebar-element -->
-            </div>
-            <!-- sidebar @e -->
-            <!-- wrap @s -->
-            <div class="nk-wrap ">
-
-            
-
-
-
-
-                <!-- main header @s -->
-                <div class="nk-header nk-header-fixed is-light">
-                    <div class="container-fluid">
-                        <div class="nk-header-wrap">
-                            <div class="nk-menu-trigger d-xl-none ms-n1">
-                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
-                            </div>
-                            <div class="nk-header-brand d-xl-none">
-                                <a href="html/index.html" class="logo-link">
-                                    <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                                    <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                            <div class="header-left active">
+                                <a href="index.html" class="logo logo-normal">
+                                    <img src="{{asset('adminFrontend/assets/img/logo.png')}}" alt="">
                                 </a>
-                            </div><!-- .nk-header-brand -->
-                            
-                            <div class="nk-header-tools">
-                                <ul class="nk-quick-nav">
-                                    
-                                    <li class="dropdown user-dropdown">
-                                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                            <div class="user-toggle">
-                                                <div class="user-avatar sm">
-                                                    <em class="icon ni ni-user-alt"></em>
-                                                </div>
-                                                <div class="user-info d-none d-md-block">
-                                                    <div class="user-status">Admin Name</div>
-                                                    <div class="user-name dropdown-indicator">{{ Auth::guard('admin')->user()->name }}</div>
-                                                </div>
-                                            </div>
+                                <a href="index.html" class="logo logo-white">
+                                    <img src="{{asset('adminFrontend/assets/img/logo-white.png')}}" alt="">
+                                </a>
+                                <a href="index.html" class="logo-small">
+                                    <img src="{{asset('adminFrontend/assets/img/logo-small.png')}}" alt="">
+                                </a>
+                                <a id="toggle_btn" href="javascript:void(0);">
+                                </a>
+                            </div>
+
+                            <a id="mobile_btn" class="mobile_btn" href="#sidebar">
+                                <span class="bar-icon">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </a>
+
+                            <ul class="nav user-menu">
+
+                                <li class="nav-item">
+                                    <div class="top-nav-search">
+                                        <a href="javascript:void(0);" class="responsive-search">
+                                            <i class="fa fa-search"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
-                                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
-                                                <div class="user-card">
-                                                    <div class="user-avatar">
-                                                        <span>AD</span>
-                                                    </div>
-                                                    <div class="user-info">
-                                                        <span class="lead-text">{{ Auth::guard('admin')->user()->name }}</span>
-                                                        <span class="sub-text">({{ Auth::guard('admin')->user()->email }})</span>
-                                                    </div>
+                                        <form action="#">
+                                            <div class="searchinputs">
+                                                <input type="text" placeholder="Search Here ...">
+                                                <div class="search-addon">
+                                                    <span><img src="{{asset('adminFrontend/assets/img/icons/closes.svg')}}" alt="img"></span>
                                                 </div>
                                             </div>
-                                            <div class="dropdown-inner">
-                                                <ul class="link-list">
-                                                    <li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
-                                                    <li><a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
-                                                    <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
-                                                    <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="dropdown-inner">
-                                                <ul class="link-list">
+                                            <a class="btn" id="searchdiv"><img src="{{asset('adminFrontend/assets/img/icons/search.svg')}}" alt="img"></a>
+                                        </form>
+                                    </div>
+                                </li>
 
-                                                    <form method="POST" action="{{ route('admin.logout') }}">
-                                                    @csrf      
-                                                    <button type="submit" class="btn btn-white btn-dim btn-outline-danger">Logout</button>
-                                              
-                                                    </form>
-                                                </ul>
+
+                                <li class="nav-item dropdown has-arrow main-drop">
+                                    <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
+                                        <span class="user-img"><img src="{{asset('adminFrontend/assets/img/profiles/avator1.jpg')}}" alt="">
+                                            <span class="status online"></span></span>
+                                    </a>
+                                    <div class="dropdown-menu menu-drop-user">
+                                        <div class="profilename">
+                                            <div class="profileset">
+                                                <span class="user-img"><img src="{{asset('adminFrontend/assets/img/profiles/avator1.jpg')}}" alt="">
+                                                    <span class="status online"></span></span>
+                                                <div class="profilesets">
+                                                    <h6>John Doe</h6>
+                                                    <h5>Admin</h5>
+                                                </div>
                                             </div>
+                                            <hr class="m-0">
+                                            <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My
+                                                Profile</a>
+                                            <a class="dropdown-item" href="generalsettings.html"><i class="me-2" data-feather="settings"></i>Settings</a>
+                                            <hr class="m-0">
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">
+                                                    logout
+                                                </button>
+
+                                            </form>
                                         </div>
-                                    </li><!-- .dropdown -->
-                                    
-                                </ul><!-- .nk-quick-nav -->
-                            </div><!-- .nk-header-tools -->
-                        </div><!-- .nk-header-wrap -->
-                    </div><!-- .container-fliud -->
-                </div>
-                <!-- main header @e -->
+                                    </div>
+                                </li>
+                            </ul>
 
-                <!----------------------------------------------- Body Part Start ---------------------------------------------->
+
+                            <div class="dropdown mobile-user-menu">
+                                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                                    <a class="dropdown-item" href="generalsettings.html">Settings</a>
+                                    <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="sidebar" id="sidebar">
+                            <div class="sidebar-inner slimscroll">
+                                <div id="sidebar-menu" class="sidebar-menu">
+                                    <ul>
+                                        <li class="active">
+                                            <a href="{{route('dashboard')}}"><img src="{{asset('adminFrontend/assets/img/icons/dashboard.svg')}}" alt="img"><span>
+                                                    Dashboard</span> </a>
+                                        </li>
+                                        <li class="submenu">
+                                            <a href="javascript:void(0);"><img src="{{asset('adminFrontend/assets/img/icons/product.svg')}}" alt="img"><span>
+                                                    Supplier</span> <span class="menu-arrow"></span></a>
+                                            <ul>
+                                                <li><a href="{{route('addSupplierPage')}}">Add Supplier</a></li>
+                                                <li><a href="{{route('supplierList')}}">Supplier List</a></li>
+
+                                            </ul>
+                                        </li>
+                                        <li class="submenu">
+                                            <a href="javascript:void(0);"><img src="{{asset('adminFrontend/assets/img/icons/product.svg')}}" alt="img"><span>
+                                                    Product</span> <span class="menu-arrow"></span></a>
+                                            <ul>
+                                                <li><a href="{{route('addProductPage')}}">Add Product</a></li>
+                                                <li><a href="{{route('productList')}}">Product List</a></li>
+                                                <li><a href="{{route('barcode')}}">Print Barcode</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="submenu">
+                                            <a href="javascript:void(0);"><img src="{{asset('adminFrontend/assets/img/icons/sales1.svg')}}" alt="img"><span>
+                                                    Order</span> <span class="menu-arrow"></span></a>
+                                            <ul>
+                                                <li><a href="{{route('addOrderPage')}}">Add Order </a></li>
+                                                <li><a href="{{route('orderList')}}">Order List</a></li>
+
+                                            </ul>
+                                        </li>
+                                        <li class="submenu">
+                                            <a href="javascript:void(0);"><img src="{{asset('adminFrontend/assets/img/icons/purchase1.svg')}}" alt="img"><span>
+                                                    Purchase</span> <span class="menu-arrow"></span></a>
+                                            <ul>
+                                                <li><a href="{{route('addPurchasePage')}}">Add Purchase</a></li>
+                                                <li><a href="{{route('purchaseList')}}">Purchase List</a></li>
+
+
+                                            </ul>
+                                        </li>
+
+
+
+
+
+                                        <li class="submenu">
+                                            <a href="javascript:void(0);"><img src="{{asset('adminFrontend/assets/img/icons/time.svg')}}" alt="img"><span>
+                                                    Report</span> <span class="menu-arrow"></span></a>
+                                            <ul>
+
+
+                                                <li><a href="{{route('saleReport')}}">Sales Report</a></li>
+
+                                                <li><a href="{{route('purchaseReport')}}">Purchase Report</a></li>
+
+
+                                            </ul>
+                                        </li>
+                                        <li><a href="{{ route('logo') }}">Logo</a></li>
+                                        <li><a href="{{ route('navbar') }}">Navbar</a></li>
+                                        <li><a href="{{ route('slider') }}">Slider</a></li>
+                                        <li><a href="{{ route('socialMedia') }}">Social Media</a></li>
+                                        <li><a href="{{ route('blog') }}">Blog</a></li>
+                                        <li><a href="{{ route('viewContact') }}">Contact us message</a></li>
+                                        <li><a href="{{ route('viewFaq') }}">Question and Answer</a></li>
+                                        <li><a href="{{ route('photos') }}">Gallery</a></li>
+
+
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                
+                    <script src="{{asset('adminFrontend/assets/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/feather.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js02"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+    
+    <script src="{{asset('adminFrontend/assets/js/bootstrap.bundle.min.js')}}"></script>
+
+    <script src="{{asset('adminFrontend/assets/plugins/select2/js/select2.min.js')}}"></script>
+
+    <script src="{{asset('adminFrontend/assets/plugins/sweetalert/sweetalert2.all.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/plugins/sweetalert/sweetalerts.min.js')}}"></script>
+
+    <script src="{{asset('adminFrontend/assets/js/script.js')}}"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!----------------------------------------------- Body Part Start ---------------------------------------------->

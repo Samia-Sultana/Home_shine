@@ -19,6 +19,9 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Route;
 
@@ -134,6 +137,67 @@ Route::prefix('admin')->group(function(){
     Route::get('/photos',[GalleryController::class,'index_photos'])->middleware(['auth:admin', 'verified'])->name('photos');
     Route::post('/photos',[GalleryController::class,'addPhotos'])->middleware(['auth:admin', 'verified'])->name('addPhotos');
     Route::post('/photo/delete',[GalleryController::class,'deletePhotos'])->middleware(['auth:admin', 'verified'])->name('deletePhoto');
+
+     /* supplier CRUD */
+    Route::get('/supplier',[SupplierController::class,'index'])->name('addSupplierPage');
+    Route::post('/supplier',[SupplierController::class,'store'])->name('addSupplier');
+    Route::get('/supplier/list',[SupplierController::class,'show'])->name('supplierList');
+    Route::post('/update/supplier',[SupplierController::class,'update'])->name('updateSupplier');
+    Route::post('/delete/supplier',[SupplierController::class,'destroy'])->name('deleteSupplier');
+    /* supplier CRUD end */
+
+    /* product CRUD */
+    Route::get('/product',[ProductController::class,'index'])->name('addProductPage');
+    Route::post('/add/product',[ProductController::class,'store'])->name('addProduct');
+    Route::get('/product/list',[ProductController::class,'show'])->name('productList');
+    Route::post('/update/product',[ProductController::class,'update'])->name('updateProduct');
+    Route::post('/delete/product',[ProductController::class,'destroy'])->name('deleteProduct');
+    /* product CRUD end */
+
+
+    /* purchase CRUD */
+    Route::get('/purchase',[PurchaseController::class,'index'])->name('addPurchasePage');
+    Route::post('/add/purchase',[PurchaseController::class,'store'])->name('addPurchase');
+    Route::get('/purchase/list',[PurchaseController::class,'show'])->name('purchaseList');
+    Route::post('/update/purchase',[PurchaseController::class,'update'])->name('updatePurchase');
+    Route::post('/delete/purchase',[PurchaseController::class,'destroy'])->name('deletePurchase');
+    Route::post('/barcode',[PurchaseController::class,'generateBarcode'])->name('generateBarcode');
+    /* purchase CRUD end */
+
+    /* orders CRUD */
+    Route::get('/order',[OrderController::class,'index'])->name('addOrderPage');
+    Route::post('/order',[CartController::class,'addToCart'])->name('addToCart');
+    Route::get('/order/list',[OrderController::class,'show'])->name('orderList');
+    Route::post('/update-cart',[CartController::class,'updateCart'])->name('updateShoppingCart');
+    Route::post('/remove/cart/product', [CartController::class, 'removeCartProduct'])->name('removeCartProduct');
+    Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::post('/add/order',[OrderController::class,'store'])->name('addOrder');
+    
+    //order list view
+    Route::get('/order/list',[OrderController::class,'show'])->name('orderList');
+    Route::post('/orderStatus',[OrderController::class,'statusUpdate'])->name('orderStatus');
+    Route::post('/delete/order',[OrderController::class,'destroy'])->name('deleteOrder');
+   
+    /* orders CRUD end */
+
+    /*customer CRUD */
+    Route::post('/add/customer',[CustomerController::class,'store'])->name('addCustomer');
+
+    /*customer CRUD */
+
+
+    /* generate report */
+    Route::get('/sale/report',[ReportController::class,'sale'])->name('saleReport');
+    Route::get('/puchase/report',[ReportController::class,'purchase'])->name('purchaseReport');
+    Route::get('/invoice/report',[ReportController::class,'invoice'])->name('invoiceReport');
+    /* generate report end*/
+
+    /*generate barcode */
+
+Route::get('/barcode',[PurchaseController::class,'barcode'])->name('barcode');
+Route::post('/barcode/generate',[PurchaseController::class,'generateBarcode'])->name('generateBarcode');
+    /*end generate barcode */
+
 
 
 
