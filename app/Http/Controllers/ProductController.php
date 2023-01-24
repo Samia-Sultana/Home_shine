@@ -53,6 +53,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        
         if ($request->file('thumbnail')) {
             $thumbnailImage = $request->file('thumbnail');
             $thumbnailImageName = date('YmdHi') . $thumbnailImage->getClientOriginalName();
@@ -64,6 +65,8 @@ class ProductController extends Controller
             'sku' => $input['sku'],
             'thumbnail' => $thumbnailImageName,
             'description' => $input['description'],
+            'catagory' => $input['catagory'],
+            'subcatagory_id' => $input['subCatagory'],
            
         ]);
 

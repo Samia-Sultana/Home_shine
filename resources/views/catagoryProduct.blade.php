@@ -27,14 +27,23 @@
                             <h2>Categories</h2>
                         </div>
                         <div class="widget-content">
-                            <ul class="sidebar_categories">
+                            <ul class="sidebar_categories "  >
                                 @php
-                                $navItems = App\Models\Catagory::all();
+                                $navItems = App\Models\Subcatagory::all();
                                 @endphp
                                 @foreach($catagories as $catagory)
-                                @if($catagory->status == "enable")
-                                <li class="lvl-1"><a href="{{'/catagory/'.$catagory->id}}" class="site-nav">{{$catagory->catagoryName}}</a></li>
-                                @endif
+                             
+                                <li class="lvl1 parent dropdown"><a href="#" class="site-nav">{{$catagory->catagoryName}}<i class="anm anm-angle-down-l"></i></a>
+                                <ul class="dropdown">
+                                        @php
+                                        $subcatagories = App\Models\SubCatagory::where('catagory_id',$catagory->id)->get();
+                                        @endphp
+                                        @foreach($subcatagories as $subcatagory)
+                                        <li><a href="{{'/catagory/'.$subcatagory->id}}" class="site-nav">{{$subcatagory->subCatagoryName}}</a></li>
+                                        @endforeach
+                                </ul>
+                                </li>
+                            
                                 @endforeach
                             </ul>
                         </div>
@@ -115,6 +124,7 @@
                                     <!-- End product name -->
                                     <!-- product price -->
                                     <div class="product-price">
+                                    <span class="price">{{"Code: ".$stock->barcode}}</span><br/>
                                         <span class="price">{{"BDT ".$stock->selling_price}}</span>
                                     </div>
                                     <!-- End product price -->

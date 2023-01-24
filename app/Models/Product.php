@@ -15,6 +15,8 @@ class Product extends Model
         'thumbnail',
         'images',
         'description',
-        'status'
+        'status',
+        'catagory',
+        'subcatagory_id'
     ];
 }

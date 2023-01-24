@@ -63,44 +63,22 @@
                             <!-- for mobile -->
 
                             <ul id="siteNav" class="site-nav medium center hidearrow">
-                                <li class="lvl1 parent dropdown"><a href="#">Home Furniture <i class="anm anm-angle-down-l"></i></a>
-                                    @php
-                                    $catagories = App\Models\Catagory::where('nav',"=",'Home Furniture')->get();
-                                    @endphp
-                                    <ul class="dropdown">
-                                        @foreach($catagories as $catagory)
-                                        @if($catagory->status == "enable")
-                                        <li><a href="{{'/catagory/'.$catagory->id}}" class="site-nav">{{$catagory->catagoryName}}</a></li>
-                                        @endif
+                                @php
+                                $catagories = App\Models\Catagory::all();
+                                @endphp
+                                @foreach($catagories as $catagory)
+                                <li class="lvl1 parent dropdown"><a href="#" class="site-nav">{{$catagory->catagoryName}}<i class="anm anm-angle-down-l"></i></a>
+                                <ul class="dropdown">
+                                        @php
+                                        $subcatagories = App\Models\SubCatagory::where('catagory_id',$catagory->id)->get();
+                                        @endphp
+                                        @foreach($subcatagories as $subcatagory)
+                                        <li><a href="{{'/catagory/'.$subcatagory->id}}" class="site-nav">{{$subcatagory->subCatagoryName}}</a></li>
                                         @endforeach
-                                    </ul>
-                                </li>
-                                <li class="lvl1 parent dropdown"><a href="#">Office Furniture <i class="anm anm-angle-down-l"></i></a>
-                                    @php
-                                    $catagories = App\Models\Catagory::where('nav',"=",'Office Furniture')->get();
-                                    @endphp
-                                    <ul class="dropdown">
-                                        @foreach($catagories as $catagory)
-                                        @if($catagory->status == "enable")
-                                        <li><a href="{{'/catagory/'.$catagory->id}}" class="site-nav">{{$catagory->catagoryName}}</a></li>
-                                        @endif
-                                        @endforeach
-                                    </ul>
-                                </li>
-                                <li class="lvl1 parent dropdown"><a href="#">Interrior <i class="anm anm-angle-down-l"></i></a>
-                                    @php
-                                    $catagories = App\Models\Catagory::where('nav',"=",'Interior')->get();
-                                    @endphp
-                                    <ul class="dropdown">
-                                        @foreach($catagories as $catagory)
-                                        @if($catagory->status == "enable")
-                                        <li><a href="{{'/catagory/'.$catagory->id}}" class="site-nav">{{$catagory->catagoryName}}</a></li>
-                                        @endif
-                                        @endforeach
-                                    </ul>
+                                </ul>
                                 </li>
 
-
+                                @endforeach
 
 
                                 @php

@@ -68,13 +68,13 @@ class CatagoryController extends Controller
      */
     public function show(Catagory $catagory, $id)
     {
-        $catagory = Catagory::find($id);
-        $catagoryProducts = Product::where('catagory', $catagory->id)->paginate(12);
-        $catagoryName =  $catagory->catagoryName;
+        $subcatagory = Subcatagory::find($id);
+        $catagoryProducts = Product::where('subcatagory_id', $subcatagory->id)->paginate(12);
+        $subcatagoryName =  $subcatagory->subCatagoryName;
         $catagories = Catagory::all();
         $logo = Logo::get()->last();
         $navigation = Navbar::all();
-        return view('catagoryProduct', compact('catagoryProducts','catagoryName','catagories','logo','navigation'));
+        return view('catagoryProduct', compact('catagoryProducts','subcatagoryName','catagories','logo','navigation'));
     }
 
     /**

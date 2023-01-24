@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Orderdetail;
 use App\Models\Purchase;
+use App\Models\Subcatagory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,7 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
+        $subcatagories = Subcatagory::all();
         $allProduct = Purchase::all();
         $orders = Order::all();
         
@@ -31,11 +33,11 @@ class OrderController extends Controller
                 $subTotal = $subTotal + ($item->price * $item->qty);
             }
             $grandTotal = $subTotal;
-            return view('createOrder', compact('orders', 'allProduct', 'subTotal'));
+            return view('createOrder', compact('orders', 'allProduct', 'subTotal', 'subcatagories'));
         }
         else{
             
-            return view('createOrder', compact('orders', 'allProduct', 'subTotal'));
+            return view('createOrder', compact('orders', 'allProduct', 'subTotal', 'subcatagories'));
         }
         
     }

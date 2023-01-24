@@ -17,6 +17,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('adminFrontend/assets/img/favicon.png')}}">
     <link rel="stylesheet" href="{{asset('adminFrontend/assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('adminFrontend/assets/css/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('adminFrontend/assets/plugins/owlcarousel/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('adminFrontend/assets/plugins/owlcarousel/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('adminFrontend/assets/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('adminFrontend/assets/plugins/fontawesome/css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('adminFrontend/assets/plugins/fontawesome/css/all.min.css')}}">
@@ -25,9 +27,11 @@
     <link rel="stylesheet" href="{{asset('adminFrontend/assets/css/bootstrap-datetimepicker.min.css')}}">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.bootstrap4.min.css">
 
-    <link rel="stylesheet" href="{{asset('adminFrontend/assets/plugins/owlcarousel/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('adminFrontend/assets/plugins/owlcarousel/owl.theme.default.min.css')}}">
+    
     <link rel="stylesheet" href="{{asset('adminFrontend/assets/css/style.css')}}">
+
+
+    
 
  
 
@@ -86,6 +90,7 @@
     <script src="{{asset('adminFrontend/assets/js/bootstrap.bundle.min.js')}}"></script>
 
     <script src="{{asset('adminFrontend/assets/plugins/select2/js/select2.min.js')}}"></script>
+    <script src="{{asset('adminFrontend/assets/plugins/owlcarousel/owl.carousel.min.js')}}"></script>
 
     <script src="{{asset('adminFrontend/assets/plugins/sweetalert/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('adminFrontend/assets/plugins/sweetalert/sweetalerts.min.js')}}"></script>

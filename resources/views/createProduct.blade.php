@@ -59,6 +59,13 @@
                                 </div>
                             </div>
                             <div class="row">
+
+                            <div class="col-lg-10 ">
+                                <textarea name="description" id="description" cols="60" rows="5" class="form-control" placeholder="description"></textarea>
+                            </div>
+
+                            </div >
+                            <div class="row">
                                 <div class="col-lg-6 catagoryRow">
                                     <div class="form-group">
                                         <label>Catagory</label>
