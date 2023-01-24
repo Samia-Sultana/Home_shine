@@ -156,6 +156,23 @@ Route::prefix('admin')->group(function () {
     Route::post('/delete/supplier', [SupplierController::class, 'destroy'])->name('deleteSupplier');
     /* supplier CRUD end */
 
+    /* catagory CRUD */
+    Route::get('/catagory', [CatagoryController::class, 'index'])->name('catagory');
+    Route::post('/catagory', [CatagoryController::class, 'store'])->name('createCatagory');
+    Route::post('/delete/catagory',[CatagoryController::class,'destroy'])->name('deleteCatagory');
+    Route::post('/update/catagory/status',[CatagoryController::class,'updateCatagoryStatus'])->name('updateCatagoryStatus');
+   
+    Route::post('/subcatagory', [CatagoryController::class, 'subStore'])->name('createSubCatagory');
+    Route::post('/delete/subcatagory',[CatagoryController::class,'subDestroy'])->name('deleteSubCatagory');
+    Route::post('/update/subcatagory/status',[CatagoryController::class,'updateSubCatagoryStatus'])->name('updateSubCatagoryStatus');
+
+    Route::get('/catagory/list', [CatagoryController::class, 'catagoryList'])->name('catagoryList');
+    Route::get('/subCatagory/list', [CatagoryController::class, 'subCatagoryList'])->name('subCatagoryList');
+    Route::post('/delete/subCatagory',[CatagoryController::class,'subDestroy'])->name('deleteSubCatagory');
+    Route::post('/fetch/subCatagory',[CatagoryController::class,'fetchSubcatagory'])->name('fetchSubcatagory');
+
+    /* catagory CRUD end */
+
     /* product CRUD */
     Route::get('/product', [ProductController::class, 'index'])->name('addProductPage');
     Route::post('/add/product', [ProductController::class, 'store'])->name('addProduct');

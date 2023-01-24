@@ -30,8 +30,8 @@ class ProductController extends Controller
     public function index()
     {
        
-
-        return view('createProduct');
+        $catagories = Catagory::all();
+        return view('createProduct', compact('catagories'));
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Models\Catagory;
 use App\Models\Product;
 use App\Models\Logo;
 use App\Models\Navbar;
+use App\Models\Subcatagory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Image;
@@ -109,8 +110,8 @@ class CatagoryController extends Controller
     {
         $id = $request->input('catagory_id');
         DB::table('catagories')->where('id',$id)->delete();
-        $catagories = Catagory::all();
-        return view('catagory',compact('catagories'));
+       
+        return redirect()->route('catagoryList');
 
     }
 
@@ -121,5 +122,56 @@ class CatagoryController extends Controller
             'status' => $status
         ]);
         return response()->json(['ji'=>'hiiiiiiiiiiiiiiiiiiii']);
+    }
+
+
+    public function subStore(Request $request)
+    {   
+        
+        if($request->file('image'))
+        {
+        $file = $request->file('image');
+        $filename= date('YmdHi').$file->getClientOriginalName();
+        Image::make($file)->save('photos/'.$filename);
+        $save_url = 'photos/'.$filename;
+        $subcatagory = new Subcatagory();
+        $subcatagory['subCatagoryName'] = $request->subCatagoryName;
+        $subcatagory['image'] = $filename;
+        $subcatagory['catagory_id'] = $request->get('catagory');
+        $subcatagory->save();
+    }
+        
+    
+    return redirect()->route('catagory');
+    }
+
+    public function catagoryList(){
+        $catagories = Catagory::all();
+        $subCatagories = Subcatagory::all();
+        return view('catagoryList',compact('catagories'));
+
+    }
+    public function subCatagoryList(){
+        $subCatagories = Subcatagory::all();
+        return view('subCatagoryList',compact('subCatagories'));
+
+    }
+    public function subDestroy(Request $request,Catagory $catagory)
+    {
+        $id = $request->input('subCatagory_id');
+        DB::table('subcatagories')->where('id',$id)->delete();
+        
+        return redirect()->route('subCatagoryList');
+
+    }
+
+    public function fetchSubcatagory(Request $request,Catagory $catagory)
+    {
+        $catagoryId = $request->catagoryId;
+        $subcatagories = Subcatagory::where('catagory_id',$catagoryId)->get();
+        
+        
+        return response()->json(['data'=>json_encode($subcatagories)]);
+
     }
 }

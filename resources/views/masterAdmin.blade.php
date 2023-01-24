@@ -62,6 +62,7 @@
 @yield('saleReport')
 @yield('purchaseReport')
 @yield('invoiceReport')
+@yield('catagoryList')
 
 
 

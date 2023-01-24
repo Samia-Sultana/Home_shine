@@ -115,6 +115,9 @@
                                             <a href="javascript:void(0);"><img src="{{asset('adminFrontend/assets/img/icons/product.svg')}}" alt="img"><span>
                                                     Product</span> <span class="menu-arrow"></span></a>
                                             <ul>
+                                                <li><a href="{{route('catagory')}}">Catagory</a></li>
+                                                <li><a href="{{route('catagoryList')}}">Catagory List</a></li>
+                                                <li><a href="{{route('subCatagoryList')}}">Sub-catagory List</a></li>
                                                 <li><a href="{{route('addProductPage')}}">Add Product</a></li>
                                                 <li><a href="{{route('productList')}}">Product List</a></li>
                                                 <li><a href="{{route('barcode')}}">Print Barcode</a></li>
